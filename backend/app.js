@@ -9,10 +9,5 @@ mongoose.connect('mongodb+srv://Ervan_ST:Poups.123@cluster0.qzdrp.mongodb.net/my
 
 
 
-app.use((req, res, next ) => {
-    console.log("ok");
-    next();
-});
-
 
 module.exports = app;
