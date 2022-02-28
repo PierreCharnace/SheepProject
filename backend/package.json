@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "My first personnal project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/PierreCharnace/SheepProject.git"
+  },
+  "keywords": [
+    "Lacaune"
+  ],
+  "author": "Pierre Charnacé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PierreCharnace/SheepProject/issues"
+  },
+  "homepage": "https://github.com/PierreCharnace/SheepProject#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3",
+    "nodemon": "^2.0.15"
+  }
+}
