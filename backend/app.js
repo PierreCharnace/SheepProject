@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 
 const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/users');
+const articleRoutes = require('./routes/articles');
+const commentRoutes = require('./routes/comments');
+
 const path = require('path');
 
 mongoose.connect('mongodb+srv://Ervan_ST:Poups.123@cluster0.qzdrp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
