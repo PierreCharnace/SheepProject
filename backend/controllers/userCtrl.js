@@ -4,15 +4,39 @@ const bcrypt = require('bcrypt');
 const jwt = require('../middleware/auth');
 const cryptojs = require('crypto-js');
 
+//REGEX
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
 
 exports.signup = (req, res, next) => {
-    bcrypt.hash(req.body.password, 10) //crypt password
+    const email = req.body.email;
+    const lastName = req.body.lastName;
+    const firstName = req.body.firstName;
+    const password = req.body.password;
+
+    if (email == null || lastName == null || firstName == null || password == null) {
+        return res.status(400).json({ 'error': 'paramètres manquants' });
+    }
+    if (lastName.length >= 30 || lastName.length <= 1) {
+        return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères'});
+    }
+    if (firstName.length >= 20 || firstName.length <= 1) {
+        return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères'});
+    }
+    if (!EMAIL_REGEX.test(email)) {
+        return res.status(400).json({ 'error': 'email non valide' })
+    }
+    if (!PASSWORD_REGEX.test(password)) {
+        return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})
+    }
+
+    bcrypt.hash(password, 10) //crypt password
     .then(hash => {
         const user = new User ({    //
-            email: req.body.email, //-->> take pasword and create new user with password crypted and mail adresse in req.body
+            email: email, //-->> take pasword and create new user with password crypted and mail adresse in req.body
             password: hash,          //
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            firstName: firstName,
+            lastName: lastName,
         });
         user.save()                                                                 //
             .then(() => res.status(201).json({ message: 'utilisateur créé !' }))    // save user in bd
