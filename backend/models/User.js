@@ -6,10 +6,10 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true },            //password registeration
     lastName: { type: String, required: true },
     firstName: { type: String, required: true},
-    imageUrl: { type: String, required: false},
-    isAdmin: {type: Boolean, required: false},
-    isModo: {type: Boolean, required: false},
-    undisplay: { type: Boolean, required: false},
+    imageUrl: { type: String,default: 0, required: false},
+    isAdmin: {type: Boolean,default: 0, required: false},
+    isModo: {type: Boolean,default: 0, required: false},
+    undisplay: { type: Boolean,default: 0, required: false},
 });
 
 userSchema.plugin(uniqueValidator)
