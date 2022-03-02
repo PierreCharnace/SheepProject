@@ -46,68 +46,15 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-// connection with current user 
-/*
-exports.login = (req, res, next) => {
-    //params   
-const email = req.body.email;
-const password = req.body.password;
-const encryptEmail = cryptojs.HmacSHA256(req.body.email, 'SECRET_KEY_FOR_EMAIL').toString();
-
-if (email == null || password == null) {
-    return res.status(400).json({ 'error': 'paramètres manquants' });
-}
-
-asyncLib.waterfall([
-function(done) {
-User.findOne({ 
-  where: { email: encryptEmail }})
-.then(function(userFound) {
-  done(null, userFound);
-})
-.catch(function(err) {
-  return res.status(500).json({ 'error': 'unable to verify user' });
-});
-},
-function(userFound, done) {
-if (userFound) {
-  bcrypt.compare(password, userFound.password, function(errBycrypt, resBycrypt) {
-    done(null, userFound, resBycrypt);
-  });
-} else {
-  return res.status(404).json({ 'error': 'user not exist in DB' });
-}
-},
-function(userFound, resBycrypt, done) {
-if(resBycrypt) {
-  done(userFound);
-} else {
-  return res.status(403).json({ 'error': 'invalid password' });
-}
-}
-], function(userFound) {
-if (userFound) {
- res.status(200).json({
-    userId: userFound._id,// If it's OK send back user ID ands token
-    token: jwt.sign(
-        { userId: userFound._id },
-        'RANDOM_TOKEN_SECRET',  //secret key for encode
-        { expiresIn: '24h' }
-    )
-});
-} else {
-return res.status(500).json({ 'error': 'cannot log on user' });
-}
-});
-};*/
-
 exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const encryptEmail = cryptojs.HmacSHA256(req.body.email, "SECRET_KEY_FOR_EMAIL").toString();
+    
     if (email == null || password == null) {
         return res.status(400).json({ 'error': 'paramètres manquants' });
     }
+    
     User.findOne({ email: encryptEmail }) // collect user with email
      
         .then(user => {
@@ -138,3 +85,25 @@ exports.login = (req, res, next) => {
        .catch(error => res.status(500).json({ error }));
 };
 
+exports.getAllProfile = (req, res, next) => {
+    User.find() // find all objects
+        .then(users => res.status(200).json(users)) //send back array of all users
+        .catch( error => res.status(400).json({ error })); // send back an error
+};
+
+exports.getUserProfile = (req, res, next) => {
+    User.findOne({ _id: req.params.id })  //  find one object with the id
+        .then(user => res.status(200).json(user)) //If it's Ok send back one sauce
+        .catch( error => res.status(404).json({ error })); // If isn't Ok send back an error
+};
+
+exports.updateProfile = (req, res, next) => {
+    const profileObject = req.file ?
+    { 
+        ...JSON.parse(req.body.user),
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : {...req.body };
+    User.updateOne({ _id: req.params.id }, { ...profileObject, _id: req.params.id})
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(403).json({ error }));
+};

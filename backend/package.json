@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/PierreCharnace/SheepProject#readme",
   "dependencies": {
+    "async": "^3.2.3",
     "bcrypt": "^5.0.1",
     "crypto-js": "^4.1.1",
     "cryptojs": "^2.5.3",
