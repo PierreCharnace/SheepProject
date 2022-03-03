@@ -98,6 +98,29 @@ exports.getUserProfile = (req, res, next) => {
 };
 
 exports.updateProfile = (req, res, next) => {
+    
+    const email = req.body.email;
+    const encryptEmail = cryptojs.HmacSHA256(req.body.email, "SECRET_KEY_FOR_EMAIL").toString();
+    const lastName = req.body.lastName;
+    const firstName = req.body.firstName;
+    const password = req.body.password;
+    const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
+    
+    if (email == null || lastName == null || firstName == null || password == null) {
+        return res.status(400).json({ 'error': 'paramètres manquants' });
+    }
+    if (lastName.length >= 30 || lastName.length <= 1) {
+        return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères'});
+    }
+    if (firstName.length >= 20 || firstName.length <= 1) {
+        return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères'});
+    }
+    if (!EMAIL_REGEX.test(email)) {
+        return res.status(400).json({ 'error': 'email non valide' })
+    }
+    if (!PASSWORD_REGEX.test(password)) {
+        return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})
+    }
     const profileObject = req.file ?
     { 
         ...JSON.parse(req.body.user),
