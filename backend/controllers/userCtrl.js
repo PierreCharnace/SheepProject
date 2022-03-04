@@ -162,8 +162,6 @@ exports.deleteProfile = (req, res, next) => {
         } else {
             return res.status(400).json({ 'error': "Vous ne pouvez pas effacer cet utilisateur" });
         }
-        
-
           
     }).catch(
         (error) => {
