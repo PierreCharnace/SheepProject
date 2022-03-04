@@ -139,86 +139,37 @@ exports.updateProfile = (req, res, next) => {
             }
           ).catch(
             (error) => {
-              res.status(400).json({
+                res.status(400).json({
                 error: error
               });
             }
           );
     })
   };
-/*
+
 exports.deleteProfile = (req, res, next) => {
-    console.log(req.headers.id);
-    console.log(req.params.id);
-    if (req.headers.id == req.params.id) {
-        User.deleteOne({_id: req.params.id})
-    .then((user) => {
-        res.status(200).json({
-          message: (req.headers.id)
-        });
-      }
-    ).catch(
-      (error) => {
-        res.status(400).json({
-          error: error
-        });
-      }
-    )
-    }next()
-    
-  };*/
-  
-  exports.deleteProfile = (req, res) => {
-    const headersId = req.headers.id
-    const isAdmin = req.body.isAdmin
-    console.log('-->',isAdmin)
-console.log(headersId);
-    asyncLib.waterfall([
-      function(done) {
-        User.findOne({ 
-            id: headersId,
-            isAdmin: req.body.isAdmin})
-        .then(function(userFound) {;
-            done(null, userFound);
-        })
-        .catch(function(err) {
-            return res.status(500).json({ 'error': 'unable to verify user' });
-        })
-    },
-    function(userFound, done) {
 
-      // Checks if the user is the owner of the targeted one
-      if (userFound.id == req.params.id || userFound.isAdmin == true) { // or if he's admin
-       
-          // Soft-deletion modifying the post the ad a timestamp to deletedAt
-        User.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: 'Utilisateur supprimé' })) // send confirmation if done
-            .catch(error => res.status(500).json({ 'error': 'cannot delete user' }))
+    const userToErase = req.params.id; //user to ersae of bd
+    User.findOne({ _id : req.body.id }) // search current user
+    .then(currentUser => {
 
-      } else {
-          res.status(401).json( error );
-      }
-      },
-    ])
-    };
-    exports.deleteProfileAdmin = (req, res, next) => {
-        console.log(req.headers.id);
-        console.log(req.params.id);
-        if (req.headers.id == req.params.id) {
-            User.deleteOne({_id: req.params.id})
-        .then((user) => {
-            res.status(200).json({
-              message: (req.headers.id)
-            });
-          }
-        ).catch(
-          (error) => {
-            res.status(400).json({
-              error: error
-            });
-          }
-        )
-        }next()
+        if (userToErase == currentUser.id || currentUser.isAdmin ) {//condition to erase
+
+            User.deleteOne({id : userToErase}) // erase with deleteOne methode
+            .then(() => res.status(200).json({ message : 'Utilisateur supprimé !'}))
+            .catch(error => res.status(500).json({ message : 'erreur'}))
+
+        } else {
+            return res.status(400).json({ 'error': "Vous ne pouvez pas effacer cet utilisateur" });
+        }
         
-      };
-      
+
+          
+    }).catch(
+        (error) => {
+            res.status(400).json({
+                'error': "Cet utilisateur n'est pas présent dans la base de donnée"
+            });
+        }
+    )
+  };
