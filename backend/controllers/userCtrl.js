@@ -122,17 +122,18 @@ exports.updateProfile = (req, res, next) => {
 
     bcrypt.hash(password, 10) //encrypt password
     .then(hash => {
-        const user = new User({
+        const user = new User({ //Takefields for Update
             _id: req.params.id,
             password: hash,
-            lastName : req.body.lastName,
-            firstName : req.body.firstName,
+            lastName : lastName,
+            firstName : firstName,
             imageUrl: imageUrl,
             email : cryptojs.HmacSHA256(req.body.email, "SECRET_KEY_FOR_EMAIL").toString(),
           });
-          User.updateOne({_id: req.params.id}, user).then(
+          User.updateOne({_id: req.params.id}, user) // update fields
+          .then(
             () => {
-              res.status(201).json({
+              res.status(201).json({   //throw response
                 message: 'User updated successfully!'
               });
             }
@@ -145,13 +146,15 @@ exports.updateProfile = (req, res, next) => {
           );
     })
   };
-
-
-exports.deleteThing = (req, res, next) => {
-    Thing.deleteOne({_id: req.params.id}).then(
-      () => {
+/*
+exports.deleteProfile = (req, res, next) => {
+    console.log(req.headers.id);
+    console.log(req.params.id);
+    if (req.headers.id == req.params.id) {
+        User.deleteOne({_id: req.params.id})
+    .then((user) => {
         res.status(200).json({
-          message: 'Deleted!'
+          message: (req.headers.id)
         });
       }
     ).catch(
@@ -160,19 +163,62 @@ exports.deleteThing = (req, res, next) => {
           error: error
         });
       }
-    );
-  };
+    )
+    }next()
+    
+  };*/
   
-  exports.getAllStuff = (req, res, next) => {
-    Thing.find().then(
-      (things) => {
-        res.status(200).json(things);
+  exports.deleteProfile = (req, res) => {
+    const headersId = req.headers.id
+    const isAdmin = req.body.isAdmin
+    console.log('-->',isAdmin)
+console.log(headersId);
+    asyncLib.waterfall([
+      function(done) {
+        User.findOne({ 
+            id: headersId,
+            isAdmin: req.body.isAdmin})
+        .then(function(userFound) {;
+            done(null, userFound);
+        })
+        .catch(function(err) {
+            return res.status(500).json({ 'error': 'unable to verify user' });
+        })
+    },
+    function(userFound, done) {
+
+      // Checks if the user is the owner of the targeted one
+      if (userFound.id == req.params.id || userFound.isAdmin == true) { // or if he's admin
+       
+          // Soft-deletion modifying the post the ad a timestamp to deletedAt
+        User.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).json({ message: 'Utilisateur supprimé' })) // send confirmation if done
+            .catch(error => res.status(500).json({ 'error': 'cannot delete user' }))
+
+      } else {
+          res.status(401).json( error );
       }
-    ).catch(
-      (error) => {
-        res.status(400).json({
-          error: error
-        });
-      }
-    );
-  };
+      },
+    ])
+    };
+    exports.deleteProfileAdmin = (req, res, next) => {
+        console.log(req.headers.id);
+        console.log(req.params.id);
+        if (req.headers.id == req.params.id) {
+            User.deleteOne({_id: req.params.id})
+        .then((user) => {
+            res.status(200).json({
+              message: (req.headers.id)
+            });
+          }
+        ).catch(
+          (error) => {
+            res.status(400).json({
+              error: error
+            });
+          }
+        )
+        }next()
+        
+      };
+      
