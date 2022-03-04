@@ -98,9 +98,7 @@ exports.getUserProfile = (req, res, next) => {
 };
 
 exports.updateProfile = (req, res, next) => {
-    
     const email = req.body.email;
-    const encryptEmail = cryptojs.HmacSHA256(req.body.email, "SECRET_KEY_FOR_EMAIL").toString();
     const lastName = req.body.lastName;
     const firstName = req.body.firstName;
     const password = req.body.password;
@@ -121,12 +119,60 @@ exports.updateProfile = (req, res, next) => {
     if (!PASSWORD_REGEX.test(password)) {
         return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})
     }
-    const profileObject = req.file ?
-    { 
-        ...JSON.parse(req.body.user),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : {...req.body };
-    User.updateOne({ _id: req.params.id }, { ...profileObject, _id: req.params.id})
-        .then(user => res.status(200).json(user))
-        .catch(error => res.status(403).json({ error }));
-};
+
+    bcrypt.hash(password, 10) //encrypt password
+    .then(hash => {
+        const user = new User({
+            _id: req.params.id,
+            password: hash,
+            lastName : req.body.lastName,
+            firstName : req.body.firstName,
+            imageUrl: imageUrl,
+            email : cryptojs.HmacSHA256(req.body.email, "SECRET_KEY_FOR_EMAIL").toString(),
+          });
+          User.updateOne({_id: req.params.id}, user).then(
+            () => {
+              res.status(201).json({
+                message: 'User updated successfully!'
+              });
+            }
+          ).catch(
+            (error) => {
+              res.status(400).json({
+                error: error
+              });
+            }
+          );
+    })
+  };
+
+
+exports.deleteThing = (req, res, next) => {
+    Thing.deleteOne({_id: req.params.id}).then(
+      () => {
+        res.status(200).json({
+          message: 'Deleted!'
+        });
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+  };
+  
+  exports.getAllStuff = (req, res, next) => {
+    Thing.find().then(
+      (things) => {
+        res.status(200).json(things);
+      }
+    ).catch(
+      (error) => {
+        res.status(400).json({
+          error: error
+        });
+      }
+    );
+  };
