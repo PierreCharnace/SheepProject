@@ -149,7 +149,7 @@ exports.updateProfile = (req, res, next) => {
 
 exports.deleteProfile = (req, res, next) => {
 
-    const userToErase = req.params.id; //user to ersae of bd
+    const userToErase = req.params.id; //user to erase of the db
     User.findOne({ _id : req.body.id }) // search current user
     .then(currentUser => {
 

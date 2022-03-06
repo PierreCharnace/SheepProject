@@ -1,35 +1,60 @@
 const Post  = require('../models/Post');
 const fs = require('fs');
+const auth = require('../middleware/auth')
 
 exports.createPosts = (req, res, next) => {
-    const postObject = JSON.parse(req.body.post);
-    delete postObject._id; // delete _id in requeste body 
+
+    const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
+    const title = req.body.title;
+    const description = req.body.description;
+    const userId = req.params.id
+    //const imageUrl = req.body.imageUrl;
+    if ( description == null && title == null && imageUrl == null && userId == null) {
+        
+    }
+    if (description == null) {
+        return res.status(401).json({ 'error': 'missing parameters' });
+    }
     const post = new Post ({ 
-        title : postObject.title,  //copy fields inside req
-        description : postObject.description,
-       // imageUrl : postObject.imageUrl,
-        userId : postObject.userId,
-       
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        title : title,  //copy fields inside req
+        description : description,
+     //   imageUrl : req.body.imageUrl,       
+        imageUrl: imageUrl,
+        userId : userId
         
     })
+
+    /*const postObject = JSON.parse(req.body.post);
+    delete postObject._id; // delete _id in requeste body 
+    console.log(postObject);
+   
+ /*  if ( req.body == null) {
+        return res.status(401).json({ 'error': 'missing parameters' });
+    }*/
     post.save()
         .then(() => res.status(201).json({ message : 'Post bien enregistée !'}),
         )
         .catch(error => res.status(400).json({ 'error' : 'impossible' }));
 };
-/*
-exports.modifySauces = (req, res, next) => {
-    const sauceObject = req.file ?
-    { 
-        ...JSON.parse(req.body.sauce),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : {...req.body };
-    Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id})
-        .then(sauce => res.status(200).json(sauce))
+
+exports.modifyPosts = (req, res, next) => {
+    const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
+    const title = req.body.title;
+    const description = req.body.description;
+    const userId = req.params.id
+    //const imageUrl = req.body.imageUrl;
+    if ( description == null && title == null && imageUrl == null && userId == null) {
+        
+    }
+    if (description == null) {
+        return res.status(401).json({ 'error': 'missing parameters' });
+    }
+  
+    Post.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id})
+        .then(post => res.status(200).json(post))
         .catch(error => res.status(403).json({ error }));
 };
-
+/*
 exports.deleteSauces = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
     .then(sauce => {
