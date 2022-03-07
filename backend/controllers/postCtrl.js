@@ -5,36 +5,30 @@ const auth = require('../middleware/auth')
 exports.createPosts = (req, res, next) => {
 
     const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
-    const title = req.body.title;
-    const description = req.body.description;
-    const userId = req.params.id
-    //const imageUrl = req.body.imageUrl;
+   // const title = req.body.post.title;
+  // const description = req.body.post.description;
+    const postObject = (req.body.post);
+   // console.log(JSON.parse(postObject));
+/*
     if ( description == null && title == null && imageUrl == null && userId == null) {
-        
+        return res.status(401).json({ 'error': 'missing a lot of parameters' });
     }
     if (description == null) {
         return res.status(401).json({ 'error': 'missing parameters' });
-    }
-    const post = new Post ({ 
-        title : title,  //copy fields inside req
-        description : description,
-     //   imageUrl : req.body.imageUrl,       
-        imageUrl: imageUrl,
-        userId : userId
-        
-    })
-
-    /*const postObject = JSON.parse(req.body.post);
-    delete postObject._id; // delete _id in requeste body 
-    console.log(postObject);
-   
- /*  if ( req.body == null) {
-        return res.status(401).json({ 'error': 'missing parameters' });
     }*/
+   // console.log(imageUrl);
+    
+    delete postObject._id; // delete _id in requeste body 
+    const post = new Post ({ 
+        ...postObject,
+       // log : `${console.log(postObject)}`,
+        imageUrl: imageUrl
+
+    })
     post.save()
         .then(() => res.status(201).json({ message : 'Post bien enregistée !'}),
         )
-        .catch(error => res.status(400).json({ 'error' : 'impossible' }));
+        .catch(error => res.status(400).json({ 'error' : `${post}` }));
 };
 
 exports.modifyPosts = (req, res, next) => {

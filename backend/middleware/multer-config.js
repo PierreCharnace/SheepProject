@@ -12,10 +12,12 @@ const MIME_TYPES =  {
 const maxSize = 1 * 1024 * 1024;
 
 const storage = multer.diskStorage({
-    destination: (req, file, callback) => { // it's for multer registered files in folder images
+    destination: (req, file, callback) => {        console.log('-->',req.body);  
+        // it's for multer registered files in folder images
         callback(null, 'images')
     },
     filename: (req, file, callback) => {
+
         // replace spaces by _ in the filename
         const name =  file.originalname.split(' ').join('_'); // name generate without space substitue with underscore + time stamp and dot
         // add extension
@@ -42,4 +44,4 @@ function createFolder () {
 
 createFolder()
 
-module.exports = multer({storage}).single('image'); // export multer who are configured
+module.exports = multer({storage}).single('imageUrl'); // export multer who are configured

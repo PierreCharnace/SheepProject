@@ -104,6 +104,8 @@ exports.updateProfile = (req, res, next) => {
     const password = req.body.password;
     const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
     
+    console.log(imageUrl);
+
     if (email == null || lastName == null || firstName == null || password == null) {
         return res.status(400).json({ 'error': 'paramètres manquants' });
     }
@@ -119,7 +121,6 @@ exports.updateProfile = (req, res, next) => {
     if (!PASSWORD_REGEX.test(password)) {
         return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})
     }
-
     bcrypt.hash(password, 10) //encrypt password
     .then(hash => {
         const user = new User({ //Takefields for Update
