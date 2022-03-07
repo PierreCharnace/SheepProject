@@ -11,13 +11,16 @@ module.exports = (req, res, next) => {
      //   console.log('youhou', decodedToken);
         const userId = decodedToken.userId;
       //  console.log(userId);
+/*
+      console.log('originaleUrl-->',req.originalUrl);
+      userIdUrl = req.originalUrl.split("=")[1];
+      console.log('id-->',userIdUrl);
+      console.log();*/
      
         if (req.body.userId && req.body.userId !== userId) {    //  compare UserID  if it's ok
             throw 'user ID non valable ! ';
         } else {
-   
-            next ();      /*   const userIdUrl= req.orginalUrl.split("=")[1];
-            console.log('****',userIdUrl);*/
+            next ();
         } 
     } catch (error){             
         res.status(401).json({ error: error | 'requête non authentifiée !'});

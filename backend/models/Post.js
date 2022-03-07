@@ -1,9 +1,9 @@
 const mongoose = require ('mongoose');
 
 const postSchema = mongoose.Schema({
-    title: { type: String, required: false },
+    title: { type: String, required: true },
     userId: { type: String, required: true },
-    imageUrl: { type: String, required: true, default:0 },
+    imageUrl: { type: String, required: false, default:0 },
     description: { type: String, required: true },
     
     undisplay: { type: Boolean, required: false}

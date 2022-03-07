@@ -1,45 +1,45 @@
 const Post  = require('../models/Post');
 const fs = require('fs');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+//const { features, title } = require('process');
 
 exports.createPosts = (req, res, next) => {
 
-    const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
-   // const title = req.body.post.title;
-  // const description = req.body.post.description;
-    const postObject = (req.body.post);
+    console.log('req', req.file)
+    const description = req.body.description;
+    const userIdUrl = req.originalUrl.split('=')[1];
+
    // console.log(JSON.parse(postObject));
-/*
-    if ( description == null && title == null && imageUrl == null && userId == null) {
-        return res.status(401).json({ 'error': 'missing a lot of parameters' });
-    }
+
     if (description == null) {
         return res.status(401).json({ 'error': 'missing parameters' });
-    }*/
-   // console.log(imageUrl);
+    }
     
-    delete postObject._id; // delete _id in requeste body 
+   // delete postObject._id; // delete _id in requeste body 
     const post = new Post ({ 
-        ...postObject,
+       // ...postObject,
        // log : `${console.log(postObject)}`,
-        imageUrl: imageUrl
-
+        imageUrl : `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        ,title : req.body.title
+        ,userId :  userIdUrl
+        ,description : req.body.description
     })
+    console.log('POST',post);
+    delete post._id
+    console.log('POST--',post._id);
     post.save()
-        .then(() => res.status(201).json({ message : 'Post bien enregistée !'}),
+        .then((post) => res.status(201).json({ message : post}),
         )
-        .catch(error => res.status(400).json({ 'error' : `${post}` }));
+        .catch(error => res.status(400).json({ 'error' : error }));
 };
 
 exports.modifyPosts = (req, res, next) => {
-    const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
-    const title = req.body.title;
+   // const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
+   // const title = req.body.title;
     const description = req.body.description;
-    const userId = req.params.id
+   // const userId = req.params.id
     //const imageUrl = req.body.imageUrl;
-    if ( description == null && title == null && imageUrl == null && userId == null) {
-        
-    }
+
     if (description == null) {
         return res.status(401).json({ 'error': 'missing parameters' });
     }
