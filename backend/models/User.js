@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
     imageUrl: { type: String,default: 0, required: true},
     isAdmin: {type: Boolean,default: 0, required: false},
     isModo: {type: Boolean,default: 0, required: false},
+    date: { type: Date, default: Date.now },
     undisplay: { type: Boolean,default: 0, required: false},
 });
 

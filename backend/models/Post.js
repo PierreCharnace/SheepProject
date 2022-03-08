@@ -5,7 +5,7 @@ const postSchema = mongoose.Schema({
     userId: { type: String, required: true },
     imageUrl: { type: String, required: false, default:0 },
     description: { type: String, required: true },
-    
+    date: { type: Date, default: Date.now },
     undisplay: { type: Boolean, required: false}
 });
  module.exports = mongoose.model('Post', postSchema);

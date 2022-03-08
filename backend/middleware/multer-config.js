@@ -11,7 +11,7 @@ const MIME_TYPES =  {
 const maxSize = 1 * 1024 * 1024;
 
 const storage = multer.diskStorage({
-    destination: (req, file, callback) => {        console.log('multer-->',file);  
+    destination: (req, file, callback) => {
         // it's for multer registered files in folder images
         callback(null, 'images')
     },

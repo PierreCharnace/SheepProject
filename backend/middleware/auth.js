@@ -4,11 +4,11 @@ const jwt = require('jsonwebtoken');
 module.exports = (req, res, next) => {
 
     try {
-        //console.log(req.headers.authorization);
+
         const token = req.headers.authorization.split(' ')[1]; //return array with bearer for catch seconde element
-     //    console.log('**',token);
+
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET'); // decode token for verify if it's true
-     //   console.log('youhou', decodedToken);
+
         const userId = decodedToken.userId;
       //  console.log(userId);
 /*
@@ -23,7 +23,7 @@ module.exports = (req, res, next) => {
             next ();
         } 
     } catch (error){             
-        res.status(401).json({ error: error | 'requête non authentifiée !'});
+        res.status(401).json({ error: 'requête non authentifiée !'});
     }
 
 
