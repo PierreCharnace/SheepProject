@@ -6,31 +6,31 @@ const auth = require('../middleware/auth');
 exports.createPosts = (req, res, next) => {
 
     console.log('req', req.file)
-    const description = req.body.description;
+    //const description = req.post.description;
     const userIdUrl = req.originalUrl.split('=')[1];
-
-   // console.log(JSON.parse(postObject));
+    const postObject = JSON.parse(req.body.post)
+    const description = postObject.description
 
     if (description == null) {
         return res.status(401).json({ 'error': 'missing parameters' });
     }
     
-   // delete postObject._id; // delete _id in requeste body 
+    delete postObject._id; // delete _id in requeste body 
     const post = new Post ({ 
-       // ...postObject,
-       // log : `${console.log(postObject)}`,
+
         imageUrl : `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        ,title : req.body.title
+        ,title : postObject.title
         ,userId :  userIdUrl
-        ,description : req.body.description
+        ,description : postObject.description
     })
-    console.log('POST',post);
+    //console.log('POST',post);
     delete post._id
     console.log('POST--',post._id);
+    console.log('--->POST2',post);
     post.save()
         .then((post) => res.status(201).json({ message : post}),
         )
-        .catch(error => res.status(400).json({ 'error' : error }));
+        .catch(error => res.status(400).json({ 'error' : post }));
 };
 
 exports.modifyPosts = (req, res, next) => {
