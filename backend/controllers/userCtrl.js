@@ -155,8 +155,8 @@ exports.deleteProfile = (req, res, next) => {
         if (userToErase == currentUser.id || currentUser.isAdmin ) {//condition to erase
 
             User.deleteOne({id : userToErase}) // erase with deleteOne methode
-            .then(() => res.status(200).json({ message : 'Utilisateur supprimé !'}))
-            .catch(error => res.status(500).json({ error : 'erreur'}))
+                .then(() => res.status(200).json({ message : 'Utilisateur supprimé !'}))
+                .catch(error => res.status(500).json({ error : 'erreur'}))
 
         } else {
             return res.status(400).json({ 'error': "Vous ne pouvez pas effacer cet utilisateur" });

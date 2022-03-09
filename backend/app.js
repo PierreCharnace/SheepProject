@@ -27,6 +27,8 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+app.use('/imagesComment', express.static(path.join(__dirname, 'imagesComment')));
+app.use('/imageAdmin', express.static(path.join(__dirname, 'imageAdmin')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/articles', articleRoutes);
 app.use('/api/comments', commentRoutes);
