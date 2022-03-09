@@ -19,5 +19,5 @@ const postSchema = mongoose.Schema({
 //"title : Kikou",
  //  "description : Youhou",
 //   "userId : 6225d14fa5528b3fc9cd0b6a",
-//   "imageUrl: IPy-iYt-L/icon-grey.png",
+//   "imageUrl: IPy-iYt-L/icon-grey.png",6225e35f173137a00cd4bd54
 //"}

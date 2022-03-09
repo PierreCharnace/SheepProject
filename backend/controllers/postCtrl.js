@@ -58,12 +58,12 @@ exports.deletePosts = (req, res, next) => {
 
 exports.getOnePosts = (req, res, next) => {
     Post.findOne({ _id: req.params.id })  //  find one object with the id
-        .then(post => res.status(200).json(post)) //If it's Ok send back one sauce
+        .then(post => res.status(200).json(post)) //If it's Ok send back one article
         .catch( error => res.status(404).json({ error })); // If isn't Ok send back an error
 };
 
 exports.getAllPosts = (req, res, next) => {
     Post.find() // find all objects
-        .then(post => res.status(200).json(post)) //send back array of all sauces
+        .then(post => res.status(200).json(post)) //send back array of all article
         .catch( error => res.status(400).json({ error })); // send back an error
 };

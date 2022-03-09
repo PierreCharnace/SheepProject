@@ -6,6 +6,7 @@ const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/users');
 const articleRoutes = require('./routes/articles');
 const commentRoutes = require('./routes/comments');
+const menuRoutes = require('./routes/menu');
 
 const path = require('path');
 //db connect
@@ -31,6 +32,7 @@ app.use('/api/articles', articleRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/api/menu', menuRoutes);
 
 
 module.exports = app;

@@ -1,17 +1,16 @@
-const Post  = require('../models/Post');
-const fs = require('fs');
 const Article = require('../models/Article')
+const fs = require('fs');
 
 exports.createArticles = (req, res, next) => {
     const articleObject = JSON.parse(req.body.article);
     delete articleObject._id; // delete _id in requeste body 
-    const adminParams = req.params.isAdmin;
+    const admin = req.params.isAdmin;
+console.log(admin);
 
-    if (articleObject !== true) {
-        return res.status(401).json({ 'error': `${adminParams}` });
-    } else {
-        next()
+    if (admin !== "1") {
+        return res.status(401).json({ 'error': "Vous n'avez pas les droits nécessaires" });
     }
+    
     const article = new Article ({ 
         ...articleObject,
         imageDescription : `${req.protocol}://${req.get('host')}/imageAdmin/${req.file.filename}`
@@ -21,7 +20,6 @@ exports.createArticles = (req, res, next) => {
         .then((article) => res.status(201).json({ message : article}),
         )
         .catch(error => res.status(400).json({ error : error }));
-
 };
 
 exports.modifyArticles = (req, res, next) => {
@@ -30,10 +28,9 @@ exports.modifyArticles = (req, res, next) => {
     {...JSON.parse(req.body.article),
     imageDescription : `${req.protocol}://${req.get('host')}/imageAdmin/${req.file.filename}`} : {...req.body };
     
-    const adminParams = req.params.isAdmin
-    console.log(adminParams);
+    const admin = req.params.isAdmin;
 
-    if (adminParams !== true) {
+    if (admin!== "1") {
         return res.status(401).json({ 'error': "Vous n'avez pas les droits nécessaires" });
     }
   
@@ -42,15 +39,20 @@ exports.modifyArticles = (req, res, next) => {
         .catch(error => res.status(403).json({ error }));
 };
 
-exports.deletePosts = (req, res, next) => {
+exports.deleteArticles = (req, res, next) => {
+    const admin = req.params.isAdmin;
 
-    Post.findOne({ _id: req.params.id }, )
+    if (admin !== "1") {
+        return res.status(401).json({ 'error': "Vous n'avez pas les droits nécessaires" });
+    }
+
+    Article.findOne({ _id: req.params.id }, )
 
     .then(article => {
-        const filename = post.imageUrl.split('/images/')[1];//extract name to delete
-        fs.unlink(`images/${filename}`, () => { // delete with fs.unlink
-            Post.deleteOne({_id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Post supprimé !'}))
+        const filename = article.imageDescription.split('/imageAdmin/')[1];//extract name to delete
+        fs.unlink(`imageAdmin/${filename}`, () => { // delete with fs.unlink
+            Article.deleteOne({_id: req.params.id })
+        .then(() => res.status(200).json({ message: 'Article supprimé !'}))
         .catch(error => res.status(404).json({ error }));
         })
     })
@@ -58,14 +60,15 @@ exports.deletePosts = (req, res, next) => {
     
 };
 
-exports.getOnePosts = (req, res, next) => {
-    Post.findOne({ _id: req.params.id })  //  find one object with the id
-        .then(post => res.status(200).json(post)) //If it's Ok send back one sauce
+exports.getOneArticles = (req, res, next) => {
+    
+    Article.findOne({ _id: req.params.id })  //  find one object with the id
+        .then(article => res.status(200).json(article)) //If it's Ok send back one article
         .catch( error => res.status(404).json({ error })); // If isn't Ok send back an error
 };
 
-exports.getAllPosts = (req, res, next) => {
-    Post.find() // find all objects
-        .then(post => res.status(200).json(post)) //send back array of all sauces
+exports.getAllArticles = (req, res, next) => {
+    Article.find() // find all objects
+        .then(article => res.status(200).json(article)) //send back array of all article
         .catch( error => res.status(400).json({ error })); // send back an error
 };
