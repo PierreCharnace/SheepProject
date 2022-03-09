@@ -50,7 +50,7 @@ exports.deletePosts = (req, res, next) => {
         const filename = post.imageUrl.split('/images/')[1];//extract name to delete
         fs.unlink(`images/${filename}`, () => { // delete with fs.unlink
             Post.deleteOne({_id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+        .then(() => res.status(200).json({ message: 'Post supprimé !'}))
         .catch(error => res.status(404).json({ error }));
         })
     })

@@ -104,7 +104,6 @@ exports.updateProfile = (req, res, next) => {
     const password = req.body.password;
     const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
     
-    console.log(imageUrl);
 
     if (email == null || lastName == null || firstName == null || password == null) {
         return res.status(400).json({ 'error': 'paramètres manquants' });
@@ -158,7 +157,7 @@ exports.deleteProfile = (req, res, next) => {
 
             User.deleteOne({id : userToErase}) // erase with deleteOne methode
             .then(() => res.status(200).json({ message : 'Utilisateur supprimé !'}))
-            .catch(error => res.status(500).json({ message : 'erreur'}))
+            .catch(error => res.status(500).json({ error : 'erreur'}))
 
         } else {
             return res.status(400).json({ 'error': "Vous ne pouvez pas effacer cet utilisateur" });
