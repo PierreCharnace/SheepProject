@@ -69,7 +69,6 @@ exports.login = (req, res, next) => {
                  }
                  
                 res.status(200).json({//
-                    
                     userId: user._id,// If it's OK send back user ID ands token
                     token : jwt.sign(
                         { userId: user._id },

@@ -1,7 +1,5 @@
 const Post  = require('../models/Post');
 const fs = require('fs');
-const auth = require('../middleware/auth');
-
 
 exports.createPosts = (req, res, next) => {
     const postObject = JSON.parse(req.body.post);

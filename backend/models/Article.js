@@ -1,7 +1,8 @@
 const mongoose = require ('mongoose');
 
 const articleSchema = mongoose.Schema({ 
-    menu: { type : String, require : false },
+    menuId: { type: String, required: true},
+    isAdmin: { type: String, required: true},
     title: { type: String, required: false },
     description: { type: String, required: false},
     imageDescription: { type: String, required: false},
