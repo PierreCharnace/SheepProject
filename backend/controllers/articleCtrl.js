@@ -6,23 +6,22 @@ exports.createArticles = (req, res, next) => {
     const articleObject = JSON.parse(req.body.article);
     delete articleObject._id; // delete _id in requeste body 
     const adminParams = req.params.isAdmin;
-    console.log('youhou', adminParams);
 
-    if (adminParams !== true) {
+    if (articleObject !== true) {
         return res.status(401).json({ 'error': `${adminParams}` });
     } else {
-        const article = new Article ({ 
-            ...articleObject,
-            imageDescription : `${req.protocol}://${req.get('host')}/imageAdmin/${req.file.filename}`
-        })
-    
-        article.save()
-            .then((article) => res.status(201).json({ message : article}),
-            )
-            .catch(error => res.status(400).json({ error : error }));
-    
+        next()
     }
-   
+    const article = new Article ({ 
+        ...articleObject,
+        imageDescription : `${req.protocol}://${req.get('host')}/imageAdmin/${req.file.filename}`
+    })
+
+    article.save()
+        .then((article) => res.status(201).json({ message : article}),
+        )
+        .catch(error => res.status(400).json({ error : error }));
+
 };
 
 exports.modifyArticles = (req, res, next) => {
