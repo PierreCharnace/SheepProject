@@ -104,20 +104,20 @@ exports.updateProfile = (req, res, next) => {
     const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
     
 
-    if (email == null || lastName == null || firstName == null || password == null) {
-        return res.status(400).json({ 'error': 'paramètres manquants' });
-    }
-    if (lastName.length >= 30 || lastName.length <= 1) {
-        return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères'});
-    }
-    if (firstName.length >= 20 || firstName.length <= 1) {
-        return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères'});
-    }
-    if (!EMAIL_REGEX.test(email)) {
-        return res.status(400).json({ 'error': 'email non valide' })
-    }
-    if (!PASSWORD_REGEX.test(password)) {
-        return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})
+    if (email == null || lastName == null || firstName == null || password == null) {                                           ////////////
+        return res.status(400).json({ 'error': 'paramètres manquants' });                                                       /////        
+    }                                                                                                                           /////////
+    if (lastName.length >= 30 || lastName.length <= 1) {                                                                                ////
+        return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères'});                     ///////
+    }                                                                                                                                   //////////// FIELDS CONTROL
+    if (firstName.length >= 20 || firstName.length <= 1) {                                                                              ///////               
+        return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères'});              //////
+    }                                                                                                                               //////
+    if (!EMAIL_REGEX.test(email)) {                                                                                                  ///////////
+        return res.status(400).json({ 'error': 'email non valide' })                                                                 /////// 
+    }                                                                                                                           //////////////////////////
+    if (!PASSWORD_REGEX.test(password)) {                                                                                         ///////////
+        return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})//////
     }
     bcrypt.hash(password, 10) //encrypt password
     .then(hash => {

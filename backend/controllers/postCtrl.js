@@ -7,16 +7,16 @@ exports.createPosts = (req, res, next) => {
     const description = postObject.description
     const userIdInObject = postObject.userId
 
-    if (description == null || userIdInObject == null) {
+    if (description == null || userIdInObject == null) {            ///// fields control
         return res.status(401).json({ 'error': 'missing parameters' });
     }
     
-    const post = new Post ({ 
+    const post = new Post ({ //create new post
         ...postObject,
         imageUrl : `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     })
 
-    post.save()
+    post.save() ////////////save post in db
         .then((post) => res.status(201).json({ message : post}),
         )
         .catch(error => res.status(400).json({ error : error }));
@@ -25,13 +25,13 @@ exports.createPosts = (req, res, next) => {
 exports.modifyPosts = (req, res, next) => {
    
     const postObject = req.file ?
-    {...JSON.parse(req.body.post),
+    {...JSON.parse(req.body.post),//////copy fields and translate with JSON.parse
     imageUrl : `${req.protocol}://${req.get('host')}/images/${req.file.filename}`} : {...req.body };
     
     const description = postObject.description;
     const userId = postObject.userId;
 
-    if (description == null || userId == null) {
+    if (description == null || userId == null) {    /////fields control
         return res.status(401).json({ 'error': 'missing parameters' });
     }
   
