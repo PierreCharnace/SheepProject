@@ -8,4 +8,4 @@ il faut taper npm start en ligne de commande.
 
 
 
-Pour le frontend :
+Pour le front :
