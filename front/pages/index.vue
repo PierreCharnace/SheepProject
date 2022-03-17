@@ -3,7 +3,6 @@
     <v-col cols="12" sm="8" md="6">
       <v-card class="logo py-4 d-flex justify-center">
         <NuxtLogo />
-        <VuetifyLogo />
       </v-card>
       <v-card>
         <v-card-title class="headline">
@@ -66,7 +65,7 @@
           <v-btn
             color="primary"
             nuxt
-            to="/inspire"
+            to="/Discussion"
           >
             Continue
           </v-btn>

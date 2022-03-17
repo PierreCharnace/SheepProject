@@ -59,18 +59,28 @@ export default {
         {
           icon: 'mdi-tractor',
           title: 'Lire un article',
-          to: '/'
+          to: '/Article'
         },
         {
           icon: 'mdi-sheep ',
           title: 'Discussion',
           to: '/Discussion'
-        }
+        },
+         {
+          icon: 'mdi-greenhouse ',
+          title: "Se connecter/S'incrire",
+          to: '/Login'
+        },
+           {
+          icon: 'mdi-greenhouse ',
+          title: "Accueil",
+          to: '/'
+        },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Accueil',
+      title: 'Lacaune',
       to: '/'
     }
   }
