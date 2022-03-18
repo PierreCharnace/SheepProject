@@ -83,6 +83,6 @@ export default {
       title: 'Lacaune',
       to: '/'
     }
-  }
+  },
 }
 </script>
