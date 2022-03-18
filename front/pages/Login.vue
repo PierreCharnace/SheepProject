@@ -1,18 +1,27 @@
 <template>
-
-<v-card>
-    <v-card-title>
-        Créer un compte
-    </v-card-title>
-    <v-input class="tw-bg-white tw-text-black">
-        <input type="text" placeholder="email" class="tw-text-black">
-        <input type="text" placeholder="mdp">
-        <input type="text" placeholder="mdpverif">
-        <input type="text" placeholder="nom">
-        <input type="text"
-        placeholder="prénom">
-    </v-input>
-</v-card>
+<v-col>
+    <v-card elevation="22">
+        <v-card-title >
+            Créer un compte
+        </v-card-title>
+        <v-input class="pl-4">
+            <input type="text" placeholder="email">
+        </v-input>
+        <v-input class="pl-4">
+            <input type="text" placeholder="mdp">
+        </v-input>
+        <v-input class="pl-4">
+            <input type="text" placeholder="mdpverif">
+        </v-input>
+        <v-input class="pl-4">
+            <input type="text" placeholder="nom">
+        </v-input>
+        <v-input class="pl-4">
+            <input type="text" placeholder="prénom">
+        </v-input>
+    </v-card>
+</v-col>
+    
 </template>
 
 <script>
