@@ -11,6 +11,8 @@
               cols="12"
               sm="6"
             >
+            <h1 v-if="mode =='login'">Connection</h1>
+            <h1 v-else>Inscription</h1>
             <p v-if="mode =='login' "> Vous n'avez pas encore de compte? <a  @click="switchTocreateAccount()">Créer un compte</a></p>
             <p v-else > Vous avez déjà un compte? <a  @click="switchToLogin()">Se connecter</a></p>
               <v-text-field
@@ -67,30 +69,21 @@
             text
           
           >
-            Cancel
+            annuler
           </v-btn>
           <v-spacer></v-spacer>
             <v-btn 
-            v-if="mode == 'create'"
-            class="disabled"
-            disabled
+           :class="{ 'disabled'  : !validatesFields}"           
+            v-if=" mode == 'create' "
             text
             color="primary"
+            
           >
             S'enregistrer
-          </v-btn>
-           <v-btn
-            v-else
-           @click="createAccount"
-            class="enabled"
-            text
-            color="primary"
-            type="submit"
-          >
-            S'enregistrer
-          </v-btn>
+          </v-btn> 
           <v-btn 
-          v-if="mode == 'login'"
+          :class="{ 'disabled'  : !validatesFields}" 
+          v-else
           text
           color="primary">
             Connection
@@ -124,14 +117,20 @@ export default {
     validatesFields: function () {
       if (this.mode == 'create') {
         
-        if ( this.email != '' && this.lastName != '' && this.firstName !='' && this.firstPassword!='' && this.passwordConfirme !='')
+        if ( 
+          this.email != '' &&
+          this.lastName != '' && this.firstName !='' &&
+          this.firstPassword!='' &&
+          this.passwordConfirme !='')
         {
           return true;
         }  else {
           return false;
         }
       } else {
-        if (this.email != '' && this.firstPassword != '') {
+        if (
+          this.email != '' &&
+          this.firstPassword != '') {
           return true
         } else {
           return false
@@ -154,3 +153,12 @@ export default {
 }
     
 </script>
+<style scoped lang="scss">
+
+.disabled {
+  cursor : not-allowed;
+  color : grey!important;
+  pointer-events: none;
+}
+
+</style>
