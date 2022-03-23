@@ -13,8 +13,8 @@
             >
             <h1 v-if="mode =='login'">Connection</h1>
             <h1 v-else>Inscription</h1>
-            <p v-if="mode =='login' "> Vous n'avez pas encore de compte? <a  @click="switchTocreateAccount()">Créer un compte</a></p>
-            <p v-else > Vous avez déjà un compte? <a  @click="switchToLogin()">Se connecter</a></p>
+            <p v-if="mode =='login' "> Vous n'avez pas encore de compte? <span class="createAndLogin" @click="switchTocreateAccount()">Créer un compte</span></p>
+            <p v-else > Vous avez déjà un compte? <span class="createAndLogin"  @click="switchToLogin()">Se connecter</span></p>
               <v-text-field
                 v-model="lastName"
                 color="purple darken-2"
@@ -51,7 +51,7 @@
                 v-model="passwordConfirme"
                 v-if=" mode === 'create'"
               ></v-text-field>
-              <small v-if="firstPassword !== passwordConfirme"
+              <small v-if="!validatePassword"
               > Mot de passe saisie incorrect
               </small>
             </v-col>
@@ -72,20 +72,20 @@
             annuler
           </v-btn>
           <v-spacer></v-spacer>
-            <v-btn 
+            <button 
            :class="{ 'disabled'  : !validatesFields}"           
             v-if=" mode == 'create' "
             text
             color="primary"
-            
           >
             S'enregistrer
-          </v-btn> 
+          </button> 
           <v-btn 
           :class="{ 'disabled'  : !validatesFields}" 
           v-else
           text
-          color="primary">
+          color="primary"                 
+          >
             Connection
           </v-btn>
         </v-card-actions>
@@ -100,7 +100,8 @@
     </v-card>
 </template>
 
-<script>
+<script>import { validate } from "../../backend/models/Post";
+
 export default {
   name: 'login',
   data: function () {
@@ -109,8 +110,8 @@ export default {
       email: '',
       lastName: '',
       firstName: '',
-      firstPassword : 'firstPassword',
-      passwordConfirme: 'passwordConfirme'
+      firstPassword : '',
+      passwordConfirme: ''
     }
   },
   computed: {
@@ -121,7 +122,8 @@ export default {
           this.email != '' &&
           this.lastName != '' && this.firstName !='' &&
           this.firstPassword!='' &&
-          this.passwordConfirme !='')
+          this.passwordConfirme !='' &&
+          this.validatePassword == true)
         {
           return true;
         }  else {
@@ -137,6 +139,13 @@ export default {
         }
       }
 
+    },
+    validatePassword: function () {
+      if (this.passwordConfirme === this.firstPassword) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   methods: {  // create account or login mode
@@ -147,8 +156,13 @@ export default {
       this.mode = 'login';
     },
    createAccount: function () {
-     console.log(this.email, this.lastName, this.firstName, this.passwordConfirme, this.firstPassword);
-   }
+     this.$store.dispatch('createAccount', {
+       email: this.email,
+       lastName: this.lastName,
+       firstName: this.firstName,
+       password: this.passwordConfirme,
+     })
+   },
   }
 }
     
@@ -156,9 +170,18 @@ export default {
 <style scoped lang="scss">
 
 .disabled {
-  cursor : not-allowed;
   color : grey!important;
   pointer-events: none;
+}
+
+.createAndLogin {
+  color: #1976d2;
+  text-decoration: underline;
+  cursor: pointer;
+  
+}
+.createAndLogin:hover{
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 </style>

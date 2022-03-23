@@ -1,0 +1,16 @@
+import { createStore } from "vuex"
+
+
+const store = createStore({
+    state: {
+
+    },
+    mutations: {
+
+    },
+    actions: {
+        createAccount (commit, userInfos) {
+            commit; console.log(userInfos);
+        }
+    }
+})
