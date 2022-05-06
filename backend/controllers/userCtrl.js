@@ -25,7 +25,7 @@ exports.signup = (req, res, next) => {
         return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères'});
     }
     if (!EMAIL_REGEX.test(email)) {
-        return res.status(400).json({ 'error': 'email non valide' })
+        return res.status(402).json({ 'error': 'email non valide' })
     }
     if (!PASSWORD_REGEX.test(password)) {
         return res.status(400).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})

@@ -1,4 +1,4 @@
-<template >
+<template>
     <v-card flat>
 
       <v-form
@@ -36,19 +36,19 @@
                 required
               ></v-text-field>
                <v-text-field
+                v-model="firstPassword"
                 color="purple darken-2"
-                label="password"
+                label="Mot de passe"
                 required
                 type="password"
-                v-model="firstPassword"
                 
               ></v-text-field>
-               <v-text-field
+              <v-text-field
+                v-model="passwordConfirme"
                 color="purple darken-2"
-                label="password"
+                label="Confirmer mot de passe"
                 required
                 type="password"
-                v-model="passwordConfirme"
                 v-if=" mode === 'create'"
               ></v-text-field>
               <small v-if="!validatePassword"
@@ -72,15 +72,16 @@
             annuler
           </v-btn>
           <v-spacer></v-spacer>
-            <button 
+            <v-btn @click="createAccount()"
            :class="{ 'disabled'  : !validatesFields}"           
             v-if=" mode == 'create' "
             text
             color="primary"
           >
             S'enregistrer
-          </button> 
+          </v-btn> 
           <v-btn 
+          type="submit"
           :class="{ 'disabled'  : !validatesFields}" 
           v-else
           text
@@ -100,7 +101,7 @@
     </v-card>
 </template>
 
-<script>import { validate } from "../../backend/models/Post";
+<script>
 
 export default {
   name: 'login',
@@ -113,6 +114,10 @@ export default {
       firstPassword : '',
       passwordConfirme: ''
     }
+  },
+
+  mounted(){
+    
   },
   computed: {
     validatesFields: function () {
@@ -156,11 +161,11 @@ export default {
       this.mode = 'login';
     },
    createAccount: function () {
-     this.$store.dispatch('createAccount', {
+     this.$store.dispatch('userInfos/createAccount', {
        email: this.email,
        lastName: this.lastName,
        firstName: this.firstName,
-       password: this.passwordConfirme,
+       password: this.passwordConfirme,       
      })
    },
   }
