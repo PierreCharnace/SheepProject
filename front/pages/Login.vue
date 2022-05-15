@@ -162,6 +162,20 @@ export default {
       });
     },
   },
+
+  head() {
+    return {
+      title:'Inscription',
+      titleTemplate: "",
+      meta: [
+        {
+          hid: "Inscription",
+          name: "Inscription",
+          content: "Inscription",
+        },
+      ],
+    };
+  },
 };
 </script>
 <style scoped lang="scss">
