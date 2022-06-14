@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const cryptojs = require('crypto-js');
 
 //REGEX
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
 
 exports.signup = (req, res, next) => {
@@ -16,6 +16,7 @@ exports.signup = (req, res, next) => {
     const firstName = req.body.firstName;
     const password = req.body.password;
 
+<<<<<<< HEAD
     // if (email == null || lastName == null || firstName == null || password == null) {
     //     return res.status(400).json({ 'error': 'paramètres manquants' });
     // }
@@ -49,6 +50,38 @@ exports.signup = (req, res, next) => {
                 })
         })
         .catch(error => res.status(500).json({ error }));
+=======
+    if (email == null || lastName == null || firstName == null || password == null) {
+        return res.status(400).json({ 'error': 'paramètres manquants' });
+    }
+    if (lastName.length >= 30 || lastName.length <= 1) {
+        return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères'});
+    }
+    if (firstName.length >= 20 || firstName.length <= 1) {
+        return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères'});
+    } //console.log(!EMAIL_REGEX.test(email));
+  /*  if (EMAIL_REGEX.test((email))) {
+        return res.status(401).json({ 'error': 'email non valide' })
+    }
+    if (PASSWORD_REGEX.test((password))) {
+        return res.status(402).json({ 'error': 'mot de passe non valide il doit être compris entre 4 et 8 caractères et contenir au moins 1 nombre'})
+    }*/
+
+    bcrypt.hash(password, 10) //crypt password
+    .then(hash => {
+        const user = new User ({    //
+            password: hash,          //
+            firstName: firstName,
+            lastName: lastName,
+            email: encryptEmail, //-->> take pasword and create new user with password crypted and mail adresse in req.body
+
+        });
+        user.save()                                                                 //
+            .then(() => res.status(201).json({ message: 'utilisateur créé !' }))    // save user in bd
+            .catch(error => res.status(403).json({ error }))                        //
+    })
+    .catch(error => res.status(500).json({ error }));
+>>>>>>> 4a2f111... yohou
 };
 
 exports.login = (req, res, next) => {

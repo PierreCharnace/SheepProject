@@ -6,6 +6,7 @@
           <v-col cols="12" sm="6">
             <h1 v-if="mode == 'login'">Connection</h1>
             <h1 v-else>Inscription</h1>
+<<<<<<< HEAD
             <p v-if="mode == 'login'">
               Vous n'avez pas encore de compte?
               <span class="createAndLogin" @click="switchTocreateAccount()"
@@ -83,6 +84,77 @@
           S'enregistrer
         </v-btn>
         <v-btn
+=======
+            <p v-if="mode =='login' "> Vous n'avez pas encore de compte? <span class="createAndLogin" @click="switchTocreateAccount()">Créer un compte</span></p>
+            <p v-else > Vous avez déjà un compte? <span class="createAndLogin"  @click="switchToLogin()">Se connecter</span></p>
+              <v-text-field
+                v-model="lastName"
+                color="purple darken-2"
+                label=" Nom"
+                required
+                v-if=" mode === 'create'"
+              ></v-text-field>
+               <v-text-field
+                v-model="firstName"
+                color="purple darken-2"
+                label="Prénom"
+                required
+                v-if=" mode === 'create'"
+              ></v-text-field>
+               <v-text-field
+               v-model="email"
+                color="purple darken-2"
+                label="Email"
+                required
+              ></v-text-field>
+              <small><p id="emailp"></p></small>
+               <v-text-field
+                v-model="firstPassword"
+                color="purple darken-2"
+                label="Mot de passe"
+                required
+                type="password"
+                
+              ></v-text-field>
+              <v-text-field
+                v-model="passwordConfirme"
+                color="purple darken-2"
+                label="Confirmer mot de passe"
+                required
+                type="password"
+                v-if=" mode === 'create'"
+              ></v-text-field>
+              <small v-if="!validatePassword"
+              > Mot de passe saisie incorrect
+              </small>
+            </v-col>
+            <v-col
+              cols="12"
+              sm="6"
+            >
+              
+            </v-col>
+
+          </v-row>
+        </v-container>
+        <v-card-actions>
+          <v-btn
+            text
+          
+          >
+            annuler
+          </v-btn>
+          <v-spacer></v-spacer>
+            <v-btn @click="createAccount()"
+           :class="{ 'disabled'  : !validatesFields}"           
+            v-if=" mode == 'create' "
+            text
+            color="primary"
+          >
+            S'enregistrer
+          </v-btn> 
+          <v-btn 
+>>>>>>> 4a2f111... yohou
           type="submit"
           :class="{ disabled: !validatesFields }"
           v-else
@@ -153,6 +225,7 @@ export default {
     switchToLogin: function () {
       this.mode = "login";
     },
+<<<<<<< HEAD
     createAccount: function () {
       this.$store.dispatch("userInfos/createAccount", {
         email: this.email,
@@ -177,6 +250,30 @@ export default {
     };
   },
 };
+=======
+   createAccount: function () {
+
+        let regexEmail = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(this.email);
+
+        function testEmail() {
+          if ( regexEmail == true) {
+            emailp.innerHTML = '';
+          } else {
+            emailp.innerHTML ='email non valide';
+          };
+        }testEmail()
+
+     this.$store.dispatch('userInfos/createAccount', {
+       email: this.email,
+       lastName: this.lastName,
+       firstName: this.firstName,
+       password: this.passwordConfirme,       
+     })
+   },
+  }
+}
+    
+>>>>>>> 4a2f111... yohou
 </script>
 <style scoped lang="scss">
 .disabled {
