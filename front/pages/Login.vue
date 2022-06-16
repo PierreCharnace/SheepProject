@@ -37,7 +37,9 @@
               color="purple darken-2"
               label="Email"
               required
-            />
+            /> <!--<small v-if="!validateEmail">
+              "Email saisie incorrect"
+            </small>-->
             <v-text-field
               v-model="firstPassword"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -110,7 +112,8 @@ export default {
       firstPassword: "",
       passwordConfirme: "",
       show1: false,
-    };
+      /*emailRegex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    */};
   },
 
   mounted() {},
@@ -143,7 +146,14 @@ export default {
       } else {
         return false;
       }
-    },
+    },/*
+    validateEmail: function () {
+      if (this.email === this.emailRegex) {
+        return true
+      } else {
+        return false
+      }
+    },*/
   },
   methods: {
     // create account or login mode
