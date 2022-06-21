@@ -16,11 +16,12 @@ export default {
       }
     })
     .then(function(response) {
-        console.log('15----->', response)
-        
+      window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
+      this.$router.push({ name: 'Login', query: { page: 2} });        
     })
     .catch(function (error) {
-        console.log('18----->', error);
+     window.alert("Adresse mail déjà utilisée! Veuillez en choisir une nouvelle.")
+
     })
     }
 }

@@ -44,9 +44,7 @@ exports.signup = (req, res, next) => {
             console.log('user--->', user)
             user.save()                                                                 //
                 .then(() => res.status(201).json({ message: 'utilisateur créé !' }))    // save user in db
-                .catch((response) => {
-                    console.log('response', response)
-                })
+                .catch(() =>res.status(500).json({ message: 'Adresse mail déjà utilisée !' }))
         })
         .catch(error => res.status(500).json({ error }));
 };
