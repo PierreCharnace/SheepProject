@@ -17,7 +17,6 @@ export default {
     })
     .then(function(response) {
       window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
-      this.$router.push({ name: 'Login', query: { page: 2} });        
     })
     .catch(function (error) {
      window.alert("Adresse mail déjà utilisée! Veuillez en choisir une nouvelle.")
