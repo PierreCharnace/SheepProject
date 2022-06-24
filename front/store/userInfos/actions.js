@@ -1,26 +1,40 @@
 const axios = require('axios');
 
 
+const instance = axios.create({
+  baseURL: 'http://localhost:8000/api/auth/'
+});
 export default {
 
-    createAccount: ({commit}, userInfos) => {
-        axios.post('http://localhost:8000/api/auth/signup',{ 
-        email : userInfos.email,
-        firstName : userInfos.firstName,
-        lastName : userInfos.lastName,
-        password: userInfos.password 
-    },
-    {
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
+  const store =  createStore({
+      state: {
+        status: '',
+        user: '',
       }
-    })
-    .then(function(response) {
-      window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
-    })
-    .catch(function (error) {
-     window.alert("Adresse mail déjà utilisée! Veuillez en choisir une nouvelle.")
+  })
 
-    })
-    }
+
+
+    createAccount: ({commit}, userInfos) => {
+        commit('setStatus', 'loading');
+        instance.post('/signup', userInfos,
+
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        }
+      })
+      .then(function(response) {
+        commit('setStatus', 'loggedIn');
+        resolve(response);
+        window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
+      })
+      .catch(function (error) {
+        commit('setStatus', 'error_login');
+        reject(error);
+        window.alert("Adresse mail déjà utilisée! Veuillez en choisir une nouvelle.")
+  
+      })
+      }
+    
 }

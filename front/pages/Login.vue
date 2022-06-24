@@ -162,10 +162,13 @@ export default {
         lastName: this.lastName,
         firstName: this.firstName,
         password: this.passwordConfirme,
-        
-      },
-        this.mode = "login"
-      );
+      }).then(function (response) {
+          commit('setStatus', 'created');
+          console.log(response);
+      }).catch(function (error) {
+          commit('setStatus', 'errorCreate');
+          console.log(error);
+      });
     },
   },
 
