@@ -6,14 +6,28 @@ const instance = axios.create({
 });
 export default {
 
-  const store =  createStore({
-      state: {
-        status: '',
-        user: '',
-      }
-  })
+    login: ({commit}, userInfos) => {
+      commit('setStatus', 'loading');
+        instance.post('/login', userInfos,
 
-
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        }
+      })
+      .then(function(response) {
+        commit('setStatus', '');
+        commit('logUser', response.data);
+       // resolve(response);
+        window.alert("Vous êtes maitenant connectés")
+      })
+      .catch(function (error) {
+        commit('setStatus', 'error_login');
+       // reject(error);
+        window.alert("Erreur d'identifiant")
+  
+      })
+    },
 
     createAccount: ({commit}, userInfos) => {
         commit('setStatus', 'loading');
@@ -25,13 +39,13 @@ export default {
         }
       })
       .then(function(response) {
-        commit('setStatus', 'loggedIn');
-        resolve(response);
+        commit('setStatus', 'created');
+//resolve(response);
         window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
       })
       .catch(function (error) {
-        commit('setStatus', 'error_login');
-        reject(error);
+        commit('setStatus', 'error_create');
+   //     reject(error);
         window.alert("Adresse mail déjà utilisée! Veuillez en choisir une nouvelle.")
   
       })

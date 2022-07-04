@@ -2,7 +2,7 @@ export default {
 
     status: '',
     user: {
-        id: -1,
+        userId: -1,
         token: '',
     },
 }

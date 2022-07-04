@@ -54,7 +54,7 @@
             />
             <v-text-field
               v-if="mode === 'create'"
-              v-model="passwordConfirme"
+              v-model="passwordConfirm"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
               :type="show1 ? 'text' : 'password'"
               color="purple darken-2"
@@ -85,6 +85,7 @@
           S'enregistrer
         </v-btn>
         <v-btn
+        @click="login"
           type="submit"
           :class="{ disabled: !validatesFields }"
           v-else
@@ -156,12 +157,23 @@ export default {
     switchToLogin: function () {
       this.mode = "login";
     },
-    createAccount: function () {
+    login: function () {
+      this.$store.dispatch("userInfos/login", {
+        email: this.email,
+        password: this.passwordConfirm
+      }).then(function (response) {
+        commit('setStatus', 'login');
+      }).catch(function (error) {
+        commit('setStatus', 'errorLogin');
+        console.log(error);
+      });
+    },
+    createAccount: function () {// regarder car probleme il faut aussi une fontion login!!!!!!!!!!
       this.$store.dispatch("userInfos/createAccount", {
         email: this.email,
         lastName: this.lastName,
         firstName: this.firstName,
-        password: this.passwordConfirme,
+        password: this.passwordConfirm,
       }).then(function (response) {
           commit('setStatus', 'created');
           console.log(response);
