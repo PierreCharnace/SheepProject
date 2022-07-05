@@ -111,7 +111,7 @@ export default {
       lastName: "",
       firstName: "",
       firstPassword: "",
-      passwordConfirme: "",
+      passwordConfirm: "",
       show1: false,
     };
   },
@@ -125,7 +125,7 @@ export default {
           this.lastName != "" &&
           this.firstName != "" &&
           this.firstPassword != "" &&
-          this.passwordConfirme != "" &&
+          this.passwordConfirm != "" &&
           this.validatePassword == true
         ) {
           return true;
@@ -141,7 +141,7 @@ export default {
       }
     },
     validatePassword: function () {
-      if (this.passwordConfirme === this.firstPassword) {
+      if (this.passwordConfirm === this.firstPassword) {
         return true;
       } else {
         return false;
@@ -162,23 +162,20 @@ export default {
         email: this.email,
         password: this.passwordConfirm
       }).then(function (response) {
-        commit('setStatus', 'login');
       }).catch(function (error) {
-        commit('setStatus', 'errorLogin');
         console.log(error);
       });
     },
-    createAccount: function () {// regarder car probleme il faut aussi une fontion login!!!!!!!!!!
+    createAccount: function () {
       this.$store.dispatch("userInfos/createAccount", {
         email: this.email,
         lastName: this.lastName,
         firstName: this.firstName,
         password: this.passwordConfirm,
       }).then(function (response) {
-          commit('setStatus', 'created');
+          //Ne pas oublier la modal!!!!!!!!!!!!!!!!!!
           console.log(response);
       }).catch(function (error) {
-          commit('setStatus', 'errorCreate');
           console.log(error);
       });
     },
@@ -213,4 +210,17 @@ export default {
 .createAndLogin:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+header,
+h2 {
+  margin-bottom: 20px;
+}
+.modal-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>

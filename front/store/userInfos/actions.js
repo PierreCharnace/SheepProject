@@ -8,6 +8,9 @@ export default {
 
     login: ({commit}, userInfos) => {
       commit('setStatus', 'loading');
+      return new Promise ((resolve, reject) =>{
+
+      
         instance.post('/login', userInfos,
 
       {
@@ -18,37 +21,39 @@ export default {
       .then(function(response) {
         commit('setStatus', '');
         commit('logUser', response.data);
-       // resolve(response);
         window.alert("Vous êtes maitenant connectés")
+        resolve(response);
       })
       .catch(function (error) {
         commit('setStatus', 'error_login');
-       // reject(error);
         window.alert("Erreur d'identifiant")
-  
+        reject(error);
       })
+    })
     },
 
     createAccount: ({commit}, userInfos) => {
         commit('setStatus', 'loading');
-        instance.post('/signup', userInfos,
+        return new Promise((resolve, reject) => {
+          instance.post('/signup', userInfos,
 
-      {
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        }
+        {
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          }
+        })
+        .then(function(response) {
+          commit('setStatus', 'created');
+          if (window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")) {
+            
+          }
+          resolve(response);
+        })
+        .catch(function (error) {
+          commit('setStatus', 'error_create');
+          reject(error);
       })
-      .then(function(response) {
-        commit('setStatus', 'created');
-//resolve(response);
-        window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
-      })
-      .catch(function (error) {
-        commit('setStatus', 'error_create');
-   //     reject(error);
-        window.alert("Adresse mail déjà utilisée! Veuillez en choisir une nouvelle.")
-  
-      })
+    })
       }
     
 }
