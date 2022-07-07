@@ -172,6 +172,7 @@ export default {
         lastName: this.lastName,
         firstName: this.firstName,
         password: this.passwordConfirm,
+        
       }).then(function (response) {
           //Ne pas oublier la modal!!!!!!!!!!!!!!!!!!
           console.log(response);
