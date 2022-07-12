@@ -9,9 +9,7 @@ export default {
     login: ({commit}, userInfos) => {
       commit('setStatus', 'loading');
       return new Promise ((resolve, reject) =>{
-
-      
-        instance.post('/login', userInfos,
+      instance.post('/login', userInfos,
 
       {
         headers: {
@@ -44,9 +42,7 @@ export default {
         })
         .then(function(response) {
           commit('setStatus', 'created');
-          if (window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")) {
-            
-          }
+          window.alert("Utilisateur créé, vous allez être redirigé vers la page de connection")
           resolve(response);
         })
         .catch(function (error) {

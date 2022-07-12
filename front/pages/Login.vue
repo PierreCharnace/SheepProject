@@ -85,7 +85,7 @@
           S'enregistrer
         </v-btn>
         <v-btn
-        @click="login"
+          @click="login()"
           type="submit"
           :class="{ disabled: !validatesFields }"
           v-else
@@ -167,6 +167,7 @@ export default {
       });
     },
     createAccount: function () {
+      const self = this;
       this.$store.dispatch("userInfos/createAccount", {
         email: this.email,
         lastName: this.lastName,
@@ -175,6 +176,7 @@ export default {
         
       }).then(function (response) {
           //Ne pas oublier la modal!!!!!!!!!!!!!!!!!!
+          self.mode = "login"
           console.log(response);
       }).catch(function (error) {
           console.log(error);
