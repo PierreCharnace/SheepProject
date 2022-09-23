@@ -3,7 +3,6 @@
     <v-form ref="form" @submit.prevent="submit">
       <v-container fluid>
         <v-row>
-          <v-btn @click="cancel()">cancel</v-btn>
           <v-col cols="12" sm="6">
             <h1 v-if="mode == 'login'">Connection</h1>
             <h1 v-else>Inscription</h1>
@@ -77,7 +76,7 @@
         </v-row>
       </v-container>
       <v-card-actions>
-        <v-btn text> annuler </v-btn>
+        <v-btn @click="cancel()" text> annuler </v-btn>
         <v-spacer></v-spacer>
         <v-btn
           v-if="mode == 'create'"
@@ -109,6 +108,7 @@ export default {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return pattern.test(v) || "Email non valide";
         },
+        /************************** * See in a old commit how do a rules for name, firstName and password pattern *******************************/
       },
     };
   },
