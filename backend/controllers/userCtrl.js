@@ -15,7 +15,6 @@ exports.signup = (req, res, next) => {
     const lastName = req.body.lastName;
     const firstName = req.body.firstName;
     const password = req.body.password;
-
     // if (email == null || lastName == null || firstName == null || password == null) {
     //     return res.status(400).json({ 'error': 'paramètres manquants' });
     // }
@@ -34,6 +33,7 @@ exports.signup = (req, res, next) => {
     // }
 
     bcrypt.hash(password, 10) //crypt password
+    
         .then(hash => {
             const user = new User({    //
                 email: encryptEmail, //-->> take pasword and create new user with password crypted and mail adresse in req.body
@@ -41,7 +41,8 @@ exports.signup = (req, res, next) => {
                 firstName: firstName,
                 lastName: lastName,
             });
-            console.log('user--->', user)
+        /*    console.log('user--->', user)*/    console.log('youhou', req.body)
+
             user.save()                                                                 //
                 .then(() => res.status(201).json({ message: 'utilisateur créé !' }))    // save user in db
                 .catch(() =>res.status(500).json({ message: 'Adresse mail déjà utilisée !' }))

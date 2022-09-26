@@ -42,7 +42,7 @@
               :rules="[rules.email]"
             />
             <v-text-field
-              v-model="object.firstPassword"
+              v-model="object.password"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
               :type="show1 ? 'text' : 'password'"
               color="purple darken-2"
@@ -56,7 +56,7 @@
             />
             <v-text-field
               v-if="mode === 'create'"
-              v-model="object.passwordConfirme"
+              v-model="passwordConfirm"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
               :type="show1 ? 'text' : 'password'"
               color="purple darken-2"
@@ -99,6 +99,7 @@ export default {
   name: "login",
   data: function () {
     return {
+      passwordConfirm: '', 
       object: this.initObject(),
       mode: "create",
       show1: false,
@@ -108,6 +109,9 @@ export default {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
           return pattern.test(v) || "Email non valide";
         },
+        password: (v) => {
+
+        }
         /************************** * See in a old commit how do a rules for name, firstName and password pattern *******************************/
       },
     };
@@ -115,7 +119,7 @@ export default {
   mounted() {},
   computed: {
     validatePassword: function () {
-      if (this.passwordConfirme === this.firstPassword) return true;
+      if (this.passwordConfirm == this.object.password) return true;
       return false;
     },
   },
@@ -133,8 +137,7 @@ export default {
         email: null,
         lastName: "",
         firstName: "",
-        firstPassword: "",
-        passwordConfirme: "",
+        password: "",
       };
     },
   },
