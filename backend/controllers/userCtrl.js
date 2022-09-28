@@ -20,11 +20,11 @@ exports.signup = (req, res, next) => {
     // }
 
 
-    // if (lastName.length >= 30 || lastName.length <= 1) {
+    // if (lastName.length >= 30 || lastName.length <= 2) {
     //     return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères' });
     // }
 
-    // if (firstName.length >= 20 || firstName.length <= 1) {
+    // if (firstName.length >= 20 || firstName.length <= 2) {
     //     return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères' });
     // }
 

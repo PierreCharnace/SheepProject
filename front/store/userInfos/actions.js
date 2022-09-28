@@ -17,7 +17,7 @@ export default {
         }
       })
       .then(function(response) {
-        commit('setStatus', '');
+        commit('setStatus', 'logged');
         commit('logUser', response.data);
         window.alert("Vous êtes maitenant connectés")
         resolve(response);

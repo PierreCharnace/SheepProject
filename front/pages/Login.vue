@@ -24,7 +24,7 @@
               color="purple darken-2"
               label=" Nom"
               required
-              :rules="[(v) => !!v || 'Nom incorrect']"
+              :rules="[rules.lastName]"
             />
             <v-text-field
               v-if="mode === 'create'"
@@ -32,7 +32,7 @@
               color="purple darken-2"
               label="Prénom"
               required
-              :rules="[(v) => !!v || 'Prénom incorrect']"
+              :rules="[rules.firstName]"
             ></v-text-field>
             <v-text-field
               v-model="object.email"
@@ -51,7 +51,7 @@
               max="8"
               min="4"
               required
-              :rules="[(v) => !!v || 'Le mot de passe n\'a pas le bon format.']"
+              :rules="[rules.password]"
               @click:append="show1 = !show1"
             />
             <v-text-field
@@ -65,7 +65,7 @@
               max="8"
               min="4"
               required
-              :rules="[(v) => !!v || 'Mot de passe incorrect']"
+              :rules="[rules.password]"
               @click:append="show1 = !show1"
             />
             <small v-if="!validatePassword">
@@ -86,7 +86,13 @@
         >
           S'enregistrer
         </v-btn>
-        <v-btn v-else type="submit" text color="primary"> Connection </v-btn>
+        <v-btn
+         v-else 
+         @click='login()' 
+         text color="primary"
+         > 
+         Connection 
+         </v-btn>
       </v-card-actions>
     </v-form>
 
@@ -110,9 +116,18 @@ export default {
           return pattern.test(v) || "Email non valide";
         },
         password: (v) => {
-
-        }
-        /************************** * See in a old commit how do a rules for name, firstName and password pattern *******************************/
+          const passwordPattern = /^(?=.*\d).{4,8}$/;
+          return passwordPattern.test(v) || 'Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre'
+        
+        },
+        firstName: (v) => { //put pattern for firstName///////////////////
+          if (this.object.firstName.length > 20 || this.object.firstName.length < 2) {
+            return 'Nom non comformes il doit être compris entre 2 et 30 caractères' }
+        },
+        lastName: (v) => { //put pattern for lastName//////////////////
+          if (this.object.lastName.length > 30 || this.object.lastName.length < 2) {
+            return 'Nom non comformes il doit être compris entre 2 et 30 caractères'}
+        },
       },
     };
   },
@@ -124,14 +139,41 @@ export default {
     },
   },
   methods: {
+    switchTocreateAccount: function () {
+      this.mode = "create";
+    },
+    switchToLogin: function () {
+      this.mode = "login";
+    },
     cancel() {
       this.$refs.form.resetValidation();
       this.object = this.initObject();
     },
     createAccount: function () {
-      if (!this.$refs.form.validate()) return;
-      this.$store.dispatch("userInfos/createAccount", this.object);
+      const self = this;
+      if (!this.$refs.form.validate())
+       return;
+          this.$store.dispatch("userInfos/createAccount", this.object
+          ).then(function (response) {
+          //Ne pas oublier la modal!!!!!!!!!!!!!!!!!!
+          self.mode = "login"
+          console.log(response);
+      }).catch(function (error) {
+          console.log(error);
+      });
+          
     },
+       login: function () {
+        this.$store.dispatch("userInfos/login", {
+        email: this.object.email,
+        password: this.object.password
+      }).then(function (response) {
+        router.push('/Article')
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+
     initObject() {
       return {
         email: null,
