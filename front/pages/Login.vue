@@ -68,7 +68,7 @@
               :rules="[rules.password]"
               @click:append="show1 = !show1"
             />
-            <small v-if="!validatePassword">
+            <small v-if="!validatePassword && mode ==='create'">
               Mot de passe saisie incorrect
             </small>
           </v-col>
@@ -113,20 +113,19 @@ export default {
         email: (v) => {
           const pattern =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(v) || "Email non valide";
+          return (pattern.test(v) || "Email non valide") || (!validatePassword(v) || "Mot de passe saisie incorrect.");
         },
         password: (v) => {
-          const passwordPattern = /^(?=.*\d).{4,8}$/;
-          return passwordPattern.test(v) || 'Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre'
-        
+          const passwordPattern = /^(?=.*\d).{4,10}$/;
+          return passwordPattern.test(v) || 'Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre'        
+        }, 
+        firstName: (v) => { 
+          const patternFirstName = /^(?=[a-zA-Z]).{2,20}$/;
+          return (patternFirstName.test(v) || 'Prénom non conforme il doit être compris entre 2 et 20 caractères');
         },
-        firstName: (v) => { //put pattern for firstName///////////////////
-          if (this.object.firstName.length > 20 || this.object.firstName.length < 2) {
-            return 'Nom non comformes il doit être compris entre 2 et 30 caractères' }
-        },
-        lastName: (v) => { //put pattern for lastName//////////////////
-          if (this.object.lastName.length > 30 || this.object.lastName.length < 2) {
-            return 'Nom non comformes il doit être compris entre 2 et 30 caractères'}
+        lastName: (v) => {
+           const patternLastName = /^(?=[a-zA-Z]).{2,30}$/ ;
+           return   (patternLastName.test(v) || 'Nom non conforme il doit être compris entre 2 et 30 caractères');
         },
       },
     };
@@ -148,6 +147,7 @@ export default {
     cancel() {
       this.$refs.form.resetValidation();
       this.object = this.initObject();
+      this.passwordConfirm;
     },
     createAccount: function () {
       const self = this;
@@ -168,7 +168,7 @@ export default {
         email: this.object.email,
         password: this.object.password
       }).then(function (response) {
-        router.push('/Article')
+        //$router.push('pages/Article')//need router who push ////////////
       }).catch(function (error) {
         console.log(error);
       });

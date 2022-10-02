@@ -19,7 +19,8 @@ export default {
       .then(function(response) {
         commit('setStatus', 'logged');
         commit('logUser', response.data);
-        window.alert("Vous êtes maitenant connectés")
+        window.alert("Vous êtes maitenant connectés, je vous mets sur la page des articles")
+        to:"/Article"
         resolve(response);
       })
       .catch(function (error) {
