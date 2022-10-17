@@ -40,7 +40,7 @@
               label="Email"
               required
               :rules="[rules.email]"
-            />
+            /> <small v-if="mode=='create'" id="emailErr"></small>
             <v-text-field
               v-model="object.password"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -113,11 +113,11 @@ export default {
         email: (v) => {
           const pattern =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return (pattern.test(v) || "Email non valide") || (!validatePassword(v) || "Mot de passe saisie incorrect.");
+              return (pattern.test(v) || "Email non valide");
         },
         password: (v) => {
           const passwordPattern = /^(?=.*\d).{4,10}$/;
-          return passwordPattern.test(v) || 'Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre'        
+          return passwordPattern.test(v) || 'Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre';
         }, 
         firstName: (v) => { 
           const patternFirstName = /^(?=[a-zA-Z]).{2,20}$/;
@@ -128,6 +128,7 @@ export default {
            return   (patternLastName.test(v) || 'Nom non conforme il doit être compris entre 2 et 30 caractères');
         },
       },
+      pages: [],
     };
   },
   mounted() {},
@@ -155,11 +156,13 @@ export default {
        return;
           this.$store.dispatch("userInfos/createAccount", this.object
           ).then(function (response) {
-          //Ne pas oublier la modal!!!!!!!!!!!!!!!!!!
+          //Don't forget the modal!!!!!!!!!!!!!!!!!!
           self.mode = "login"
           console.log(response);
       }).catch(function (error) {
-          console.log(error);
+          if (error.code = "ERR_BAD_RESPONSE" ) {
+            emailErr.innerHTML = "Email déjà utilisé"
+          };
       });
           
     },
@@ -168,6 +171,7 @@ export default {
         email: this.object.email,
         password: this.object.password
       }).then(function (response) {
+        this.pages = 'pages/Article'
         //$router.push('pages/Article')//need router who push ////////////
       }).catch(function (error) {
         console.log(error);
@@ -210,5 +214,8 @@ export default {
 }
 .createAndLogin:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+#emailErr {
+  color: red;
 }
 </style>
