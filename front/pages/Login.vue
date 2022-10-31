@@ -105,6 +105,7 @@ export default {
   name: "login",
   data: function () {
     return {
+      loadArticlePage: '/pages/Article',
       passwordConfirm: '', 
       object: this.initObject(),
       mode: "create",
@@ -153,26 +154,30 @@ export default {
     createAccount: function () {
       const self = this;
       if (!this.$refs.form.validate())
-       return;
+       return
           this.$store.dispatch("userInfos/createAccount", this.object
           ).then(function (response) {
           //Don't forget the modal!!!!!!!!!!!!!!!!!!
           self.mode = "login"
           console.log(response);
-      }).catch(function (error) {
-          if (error.code = "ERR_BAD_RESPONSE" ) {
+          }).catch(function (error) {
+            console.log(error);
+            return emailErr.innerHTML = "Email déjà utilisé" 
+           /*   if (error.code = "ERR_BAD_RESPONSE" ) {
             emailErr.innerHTML = "Email déjà utilisé"
-          };
-      });
+          };*/
+          });
           
     },
        login: function () {
+         const self = this;
         this.$store.dispatch("userInfos/login", {
         email: this.object.email,
         password: this.object.password
       }).then(function (response) {
-        this.pages = 'pages/Article'
-        //$router.push('pages/Article')//need router who push ////////////
+        console.log(self.loadArticlePage);
+        //$route.push(self.loadArticlePage)
+        nuxt.$router.push('/Article')//need router who push ////////////
       }).catch(function (error) {
         console.log(error);
       });
@@ -180,10 +185,11 @@ export default {
 
     initObject() {
       return {
-        email: null,
         lastName: "",
         firstName: "",
         password: "",
+                email: null,
+
       };
     },
   },

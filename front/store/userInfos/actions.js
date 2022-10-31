@@ -20,10 +20,11 @@ export default {
         commit('setStatus', 'logged');
         commit('logUser', response.data);
         window.alert("Vous êtes maitenant connectés, je vous mets sur la page des articles")
-        to:"/Article"
+       // to:"/Article"
         resolve(response);
       })
       .catch(function (error) {
+        console.log(error);
         commit('setStatus', 'error_login');
         window.alert("Erreur d'identifiant")
         reject(error);

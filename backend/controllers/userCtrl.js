@@ -15,22 +15,7 @@ exports.signup = (req, res, next) => {
     const lastName = req.body.lastName;
     const firstName = req.body.firstName;
     const password = req.body.password;
-    // if (email == null || lastName == null || firstName == null || password == null) {
-    //     return res.status(400).json({ 'error': 'paramètres manquants' });
-    // }
-
-
-    // if (lastName.length >= 30 || lastName.length <= 2) {
-    //     return res.status(400).json({ 'error': 'Nom non comformes il doit être compris entre 2 et 30 caractères' });
-    // }
-
-    // if (firstName.length >= 20 || firstName.length <= 2) {
-    //     return res.status(400).json({ 'error': 'Prénom non comformes il doit être compris entre 2 et 20 caractères' });
-    // }
-
-    // if (!EMAIL_REGEX.test(email)) {
-    //     return res.status(402).json({ 'error': 'email non valide' })
-    // }
+    
 
     bcrypt.hash(password, 10) //crypt password
     
@@ -41,7 +26,7 @@ exports.signup = (req, res, next) => {
                 firstName: firstName,
                 lastName: lastName,
             });
-        /*    console.log('user--->', user)*/    console.log('youhou', req.body)
+           console.log('youhou', req.body)
 
             user.save()                                                                 //
                 .then(() => res.status(201).json({ message: 'utilisateur créé !' }))    // save user in db
