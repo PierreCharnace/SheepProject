@@ -88,7 +88,8 @@
         </v-btn>
         <v-btn
          v-else 
-         @click='login()' 
+         @click='login() ' 
+
          text color="primary"
          > 
          Connection 
@@ -105,6 +106,7 @@ export default {
   name: "login",
   data: function () {
     return {
+      articlePage: {to: '/Article'},
       loadArticlePage: '/pages/Article',
       passwordConfirm: '', 
       object: this.initObject(),
@@ -175,9 +177,11 @@ export default {
         email: this.object.email,
         password: this.object.password
       }).then(function (response) {
-        console.log(self.loadArticlePage);
+        //return self.articlePage
+        console.log(self.articlePage);
+      //  console.log(self.loadArticlePage);
         //$route.push(self.loadArticlePage)
-        nuxt.$router.push('/Article')//need router who push ////////////
+        //nuxt.$router.push('/Article')//need router who push ////////////
       }).catch(function (error) {
         console.log(error);
       });

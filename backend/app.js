@@ -13,7 +13,7 @@ const menuRoutes = require('./routes/menu');
 const path = require('path');
 //db connect
 
-mongoose.connect('CONNECTIONTODBMONGO',
+mongoose.connect('mongodb+srv://Ervan_ST:Poups.123@cluster0.qzdrp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
