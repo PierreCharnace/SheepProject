@@ -71,6 +71,11 @@ export default {
           title: "Se connecter/S'incrire",
           to: '/Login'
         },
+        {
+          icon: 'mdi-head',
+          title: "Profile",
+          to: '/Profile'
+        },
            {
           icon: 'mdi-greenhouse ',
           title: "Accueil",

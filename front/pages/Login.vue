@@ -88,8 +88,8 @@
         </v-btn>
         <v-btn
          v-else 
-         @click='login() ' 
-
+         @click='login()'
+         articlePage
          text color="primary"
          > 
          Connection 
@@ -107,7 +107,6 @@ export default {
   data: function () {
     return {
       articlePage: {to: '/Article'},
-      loadArticlePage: '/pages/Article',
       passwordConfirm: '', 
       object: this.initObject(),
       mode: "create",
@@ -165,25 +164,15 @@ export default {
           }).catch(function (error) {
             console.log(error);
             return emailErr.innerHTML = "Email déjà utilisé" 
-           /*   if (error.code = "ERR_BAD_RESPONSE" ) {
-            emailErr.innerHTML = "Email déjà utilisé"
-          };*/
-          });
-          
+          });          
     },
-       login: function () {
-         const self = this;
+    login: function () {
+        const self = this;
         this.$store.dispatch("userInfos/login", {
         email: this.object.email,
         password: this.object.password
       }).then(function (response) {
-        //return self.articlePage
-        console.log(self.articlePage);
-      //  console.log(self.loadArticlePage);
-        //$route.push(self.loadArticlePage)
-        //nuxt.$router.push('/Article')//need router who push ////////////
       }).catch(function (error) {
-        console.log(error);
       });
     },
 
