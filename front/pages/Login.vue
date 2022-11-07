@@ -172,6 +172,7 @@ export default {
         email: this.object.email,
         password: this.object.password
       }).then(function (response) {
+        localStorage.setItem('email', JSON.stringify(self.object.email));
       }).catch(function (error) {
       });
     },
@@ -181,7 +182,7 @@ export default {
         lastName: "",
         firstName: "",
         password: "",
-                email: null,
+        email: null,
 
       };
     },
