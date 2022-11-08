@@ -19,13 +19,7 @@ export default {
       .then(function(response) {
         commit('setStatus', 'logged');
         commit('logUser', response.data);
-        if (window.confirm('Vous êtes connectés, voulez-vous aller sur la page des articles?')) {
-          
-          window.open("/Article");
-        } else {
-
-          window.open("/Profile")
-        }
+        window.alert('Vous allez être dirigés vers la page article')
         resolve(response);
       })
       .catch(function (error) {

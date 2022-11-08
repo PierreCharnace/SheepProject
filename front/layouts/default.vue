@@ -38,7 +38,8 @@
           class="ma-2 pa-2"
           tile
           dark
-          rounded
+          rounded 
+          @click="logout()"
         >
           <v-icon
             dark
@@ -66,6 +67,7 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
+
       clipped: false,
       drawer: false,
       fixed: false,
@@ -103,6 +105,15 @@ export default {
       to: '/'
     }
   },
+  methods: {
+    logout: function () {
+      if (confirm("vous allez être déconnecté")) {
+        this.$store.commit('userInfos/logout');
+        this.$router.push('Login')
+        return;
+      }
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
