@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card v-if="mode === 'Infos'" class="mx-auto" elevation="7" shaped max-width="400">
+        <v-card v-if="mode === 'Infos'" class="mx-auto pb-3" elevation="7" shaped max-width="400">
             <form>
                 <v-card-title class="d-flex justify-center">Page de Profil</v-card-title>
                 <div class="d-flex justify-center">
@@ -24,6 +24,7 @@
                         text
                         @click="switchToModifyInformations()"
                     >
+                    <v-icon class="ma-2" title="modifier">mdi-pencil</v-icon>
                         Modifier mes informations
                     </v-btn>
                 </v-card-actions>
@@ -33,6 +34,7 @@
                         rounded
                         text
                     >
+                    <v-icon class="ma-2" title="effacer">mdi-delete</v-icon>
                         Effacer mon profil
                     </v-btn>
                 </v-card-actions>
@@ -86,7 +88,8 @@ export default {
         user: {firstName:'',
                lastName:'',
                email:'',
-               password:''   
+               password:'',
+               imageUrl:null,   
               } ,
         rules: {
             email: (v) => {
@@ -123,8 +126,6 @@ export default {
             this.mode = "Infos";
         },
     }
-
-
 }
 
 </script>

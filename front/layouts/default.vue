@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app class="dark">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -28,12 +28,26 @@
       :clipped-left="clipped"
       fixed
       app
+      class="d-flex mb-6 justify-"
+      flat
+      tile
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
+        <v-app-bar-nav-icon class="pa-2" tile @click.stop="drawer = !drawer"/>
+        <v-toolbar-title class="pa-2 ml-auto" tile v-text="title" />
+        <v-btn
+          class="ma-2 pa-2"
+          tile
+          dark
+          rounded
+        >
+          <v-icon
+            dark
+          > mdi-cancel
+          </v-icon> Se déconnecter
+        </v-btn>
+     <!-- <v-spacer />-->
     </v-app-bar>
-    <v-main>
+    <v-main class="bg ">
       <v-container>
         <Nuxt />
       </v-container>
@@ -91,3 +105,10 @@ export default {
   },
 }
 </script>
+<style scoped lang="scss">
+ .bg {
+   width: 100%;
+   height: 100%;
+   background: url(../assets/tree.jpg);
+ }
+</style>
