@@ -40,11 +40,12 @@
           dark
           rounded 
           @click="logout()"
+          v-if=" user.userId!=''"
         >
           <v-icon
             dark
           > mdi-cancel
-          </v-icon> Se déconnecter
+          </v-icon>Déconnexion
         </v-btn>
      <!-- <v-spacer />-->
     </v-app-bar>
@@ -67,7 +68,10 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-
+      user: {
+        userId:'',
+        token:''
+      },
       clipped: false,
       drawer: false,
       fixed: false,
@@ -105,6 +109,10 @@ export default {
       to: '/'
     }
   },
+  mounted(userLogged) {
+   //let user = localStorage.getItem('user', JSON.parse(user))
+   console.log('YOUHOU',userLogged);
+  },
   methods: {
     logout: function () {
       if (confirm("vous allez être déconnecté")) {
@@ -112,7 +120,18 @@ export default {
         this.$router.push('Login')
         return;
       }
+    },
+    unlogged: function () {
+      if (userLogged == '') {
+
+      }
+    },
+    getBackUser: function () {
+      user = localStorage.getItem('user', JSON.parse(user));
+     userId = user.userId;
+     return {userId} 
     }
+
   }
 }
 </script>

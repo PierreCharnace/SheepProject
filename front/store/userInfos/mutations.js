@@ -15,6 +15,10 @@ export default {
       state.user = user;
       this.$router.push('Article')
     },
+    userLogged: function () {
+      user = localStorage.getItem('user', JSON.parse(user))// get back user ;
+      return user
+    },
     logout: function (state) {
       state.user = {
         userId: -1,
@@ -22,7 +26,7 @@ export default {
       }
       localStorage.removeItem('user');
       localStorage.removeItem('email');
-     // localStorage.removeItem('postInfos');
+      localStorage.removeItem('postInfos');
   
     },
 }
