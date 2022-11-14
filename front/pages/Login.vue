@@ -183,7 +183,6 @@ export default {
         firstName: "",
         password: "",
         email: null,
-
       };
     },
   },

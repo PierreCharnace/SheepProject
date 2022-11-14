@@ -125,7 +125,36 @@ export default {
         switchToInformations: function () {
             this.mode = "Infos";
         },
+
+        updateProfile: function () {
+                let userToken = localStorage.getItem('user');
+                userToken = JSON.parse(userToken)
+
+                {  axios.put("http://localhost:3000/api/users/userProfile", {
+                        
+                        lastName : this.user.lastName,
+                        firstName: this.user.firstName,
+
+                    },
+                    {
+                        headers: {
+                            Authorization: "Bearer " + userToken.token
+                        }
+                    }).then (response => {
+                        window.alert("Modifications effectuées")
+                        this.$router.go()
+
+                    }).catch(function (error) {
+                        if (error == "Error: Request failed with status code 400") {
+                            window.alert('Il y a un soucis avec les informations saisies!')
+                        }
+                        
+                    })
+                }
+        
+            },
     }
+
 }
 
 </script>

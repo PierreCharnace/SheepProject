@@ -40,7 +40,7 @@
           dark
           rounded 
           @click="logout()"
-          v-if=" user.userId!=''"
+          v-if=" 'r'"
         >
           <v-icon
             dark
@@ -68,9 +68,8 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      withSlashes: null,
       user: {
-        userId:'',
+        userId: '',
         token:''
       },
       clipped: false,
@@ -111,8 +110,9 @@ export default {
     }
   },
   mounted(userLogged) {
+    
    //let user = localStorage.getItem('user', JSON.parse(user))
-   console.log('YOUHOU',userLogged);
+  // console.log('YOUHOU',userLogged);
   },
   methods: {
 
@@ -136,13 +136,20 @@ export default {
       if (userLogged == '') {
 
       }
-    },
+    },/*
     getBackUser: function () {
+    /* if (localStorage.getItem('user') == " ") {
+       return ''
+     } else{
+       return localStorage.getItem('user')
+     } 
      let user = localStorage.getItem('user');
-     user = JSON.parse(user) ;
+     user = (JSON.parse(user) == '' ? 'nop' : JSON.parse(user)) ;
      const userId = user.userId;
-      return userId
-    }
+     console.log('user----->',user);
+     return console.log('//////////////', `${userId == 'dfdfdfd' ? 'nop' : 'ok'}`);
+      return (userId == 'nop' ? 'nop' : 'ok')
+    }*/
   }
 }
 </script>

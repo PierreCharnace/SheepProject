@@ -4,8 +4,8 @@ const axios = require('axios');
 const instance = axios.create({
   baseURL: 'http://localhost:8000/api/auth/'
 });
-/*
-//let user = localStorage.getItem('user');
+
+let user = localStorage.getItem('user');
 if (!user) {
   user = {
     userId: -1,
@@ -22,7 +22,7 @@ if (!user) {
     };
   }
 }
-*/
+
 export default {
 
     login: ({commit}, userInfos) => {
@@ -70,6 +70,16 @@ export default {
           reject(error);
       })
     })
-      }
+  },
+  getUserInfos: ({commit}) => {
+    instance.get('/users/userProfile')
+      .then(function (response) {
+        commit('userInfos', response.data);
+      })
+      .catch(function (err) {
+        commit('setStatus');
+        reject(err)
+      })
+  },
     
 }
