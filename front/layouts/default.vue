@@ -58,7 +58,7 @@
       :absolute="!fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy;  {{ date() }} </span>
     </v-footer>
   </v-app>
 </template>
@@ -68,6 +68,7 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
+      withSlashes: null,
       user: {
         userId:'',
         token:''
@@ -114,6 +115,16 @@ export default {
    console.log('YOUHOU',userLogged);
   },
   methods: {
+
+    date: function () {
+   const date = new Date();
+   const year = date.getFullYear();
+   const month = date.getMonth();
+   const day = date.getDate();
+   const withSlashes = [day,month,year ].join('/');
+    return withSlashes
+    },
+
     logout: function () {
       if (confirm("vous allez être déconnecté")) {
         this.$store.commit('userInfos/logout');
@@ -127,11 +138,11 @@ export default {
       }
     },
     getBackUser: function () {
-      user = localStorage.getItem('user', JSON.parse(user));
-     userId = user.userId;
-     return {userId} 
+     let user = localStorage.getItem('user');
+     user = JSON.parse(user) ;
+     const userId = user.userId;
+      return userId
     }
-
   }
 }
 </script>
