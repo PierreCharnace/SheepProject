@@ -35,6 +35,9 @@ export default {
       state.user = user;
       this.$router.push('Article')
     },
+    userInfos: function (state, userInfos) {
+      state.userInfos = userInfos;
+    },
     userLogged: function () {
       user = localStorage.getItem('user', JSON.parse(user))// get back user ;
       return user

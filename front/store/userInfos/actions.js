@@ -5,26 +5,9 @@ const instance = axios.create({
   baseURL: 'http://localhost:8000/api/auth/'
 });
 
-let user = localStorage.getItem('user');
-if (!user) {
-  user = {
-    userId: -1,
-    token: '',
-  };
-} else {
-  try {
-      user = JSON.parse(user);
-      instance.defaults.headers.common['Authorization'] = user.token;
-  } catch (ex) {
-    user = {
-      userId: -1,
-      token: '',
-    };
-  }
-}
 
 export default {
-
+  
     login: ({commit}, userInfos) => {
       commit('setStatus', 'loading');
       return new Promise ((resolve, reject) =>{
