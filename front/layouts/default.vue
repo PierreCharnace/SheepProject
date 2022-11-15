@@ -40,7 +40,7 @@
           dark
           rounded 
           @click="logout()"
-          v-if=" 'r'"
+          v-if=" (user.token>=-1)"
         >
           <v-icon
             dark
@@ -68,10 +68,7 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      user: {
-        userId: '',
-        token:''
-      },
+      user: JSON.parse(localStorage.getItem('user')),
       clipped: false,
       drawer: false,
       fixed: false,
