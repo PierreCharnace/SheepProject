@@ -1,6 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  mode: 'universal',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - frontend',
@@ -42,8 +43,12 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/universal-storage',
   ],
 
+  storage: {
+
+  },
   axios: {
     // extra config e.g
      baseURL: 'http://localhost:8000/api'
