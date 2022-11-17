@@ -40,7 +40,7 @@
           dark
           rounded 
           @click="logout()"
-          v-if=" (user.token !=='-1')"
+          v-if="'e' /*(user.token !=='-1')*/"
         >
           <v-icon
             dark
@@ -68,7 +68,7 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      user: ''/*JSON.parse(localStorage.getItem('user'))*/,
+      
       clipped: false,
       drawer: false,
       fixed: false,
@@ -107,13 +107,14 @@ export default {
     }
   },
   mounted(userLogged) {
-    if (typeof window !== 'undefined') {
+ /*   if (typeof window !== 'undefined') {
     localStorage.setItem('myCat');
     console.log('--------------->youhou', this.user.token);
-}
+}*/
 
    //let user = localStorage.getItem('user', JSON.parse(user))
   // console.log('YOUHOU',userLogged);
+  console.log('yyyyyyyy', this.$store.state.stateId);
   },
   methods: {
 

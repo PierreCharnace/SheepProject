@@ -6,7 +6,7 @@ const instance = axios.create({
 
 export default {
     state: { 
-        user:'',
+      user: JSON.parse(localStorage.getItem('user')),
         status:'',
         userInfos: {
           email: '',
@@ -25,9 +25,12 @@ export default {
           isModo:'',
           isAdmin:'',
           imageUrl:'', 
-        },  
+        },
+        log: console.log('-------------------->',JSON.parse(localStorage.getItem('user'))),  
     },
-    methods: {
-        
-    },
+    computed: {
+      stateId () {
+        return this.user  
+      }
+    }
 }
