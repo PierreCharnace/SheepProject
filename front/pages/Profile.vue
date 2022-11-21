@@ -113,6 +113,13 @@ export default {
      }
     },
     mounted:function () {
+            console.log(this.$store.dispatch("userInfos/getUserInfos"));
+        if (this.$store.state.user.token == '') {
+            this.$router.push('/login').catch(()=>{});
+            console.log(this.$store.state.user.token);
+            return ;
+        } 
+            this.$store.dispatch('getUserInfos');
 
         if(localStorage.email) {
             this.user.email = JSON.parse(localStorage.getItem('email'));

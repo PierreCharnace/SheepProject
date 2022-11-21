@@ -4,10 +4,12 @@ const instance = axios.create({
   baseURL: 'http://localhost:8000/api/auth/'
 });
 
-export default {
-    state: { 
-      user: JSON.parse(localStorage.getItem('user')),
-        status:'',
+export default () => ({
+      user:{ /*JSON.parse(localStorage.getItem('user'))*/
+        token:'',
+        userId:'',
+      },
+      status:'',
         userInfos: {
           email: '',
           password: '',
@@ -26,11 +28,4 @@ export default {
           isAdmin:'',
           imageUrl:'', 
         },
-        log: console.log('-------------------->',JSON.parse(localStorage.getItem('user'))),  
-    },
-    computed: {
-      stateId () {
-        return this.user  
-      }
-    }
-}
+})

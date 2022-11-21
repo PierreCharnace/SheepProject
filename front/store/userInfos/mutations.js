@@ -16,11 +16,11 @@ export default {
     },
     userInfos: function (state, userInfos) {
       state.userInfos = userInfos;
-    },/*
-    userLogged: function () {
-      user = localStorage.getItem('user', JSON.parse(user))// get back user ;
-      return user
-    },*/
+    },
+    userLogged: function (state) {
+      localStorage.getItem('user', JSON.parse(state.user))// get back user ;
+      return console.log(state.user)
+    },
     logout: function (state) {
       state.user = {
         userId: -1,

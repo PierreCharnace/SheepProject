@@ -5,7 +5,7 @@ const instance = axios.create({
 });
 
 export default {
-    userInfosGetter: function () {
+    /*userInfosGetter: function () {
         let user = localStorage.getItem('user');
         if (!user) {
         user = {
@@ -23,5 +23,9 @@ export default {
             };
         }
     }
-    }
+    },*/
+    stateId(state) {
+        console.log('youhou', state.user);
+        return state.user
+      }
 }

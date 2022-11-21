@@ -62,5 +62,4 @@ export default {
         reject(err)
       })
   },
-    
 }

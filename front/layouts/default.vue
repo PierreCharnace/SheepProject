@@ -114,7 +114,7 @@ export default {
 
    //let user = localStorage.getItem('user', JSON.parse(user))
   // console.log('YOUHOU',userLogged);
-  console.log('yyyyyyyy', this.$store.state.stateId);
+  //console.log('yyyyyyyy', this.$store.state("userInfos/stateId"));
   },
   methods: {
 
