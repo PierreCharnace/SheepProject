@@ -23,9 +23,9 @@ export default {
             };
         }
     }
-    },*/
+    },*//*
     stateId(state) {
         console.log('youhou', state.user);
         return state.user
-      }
+      }*/
 }

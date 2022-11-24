@@ -51,15 +51,15 @@ export default {
           reject(error);
       })
     })
-  },
-  getUserInfos: ({commit}) => {
-    instance.get('/users/userProfile')
+  },/*
+  getUserInfos: ({commit, }) => {
+    instance.get('/userProfile/:id')
       .then(function (response) {
         commit('userInfos', response.data);
       })
-      .catch(function (err) {
-        commit('setStatus');
-        reject(err)
+      .catch(function (error) {
+        commit('setStatus','logout', 'error_infos');
+        reject(error);
       })
-  },
+  },*/
 }

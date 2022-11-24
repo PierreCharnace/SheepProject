@@ -9,7 +9,7 @@ export default {
       state.status = status;
     },
     logUser: function (state, user) {
-      instance.defaults.headers.common['Authorization'] = user.token;
+      //instance.defaults.headers.common['Authorization'] = user.token;
       localStorage.setItem('user', JSON.stringify(user))// save user in localStorage 
       state.user = user;
       this.$router.push('Article')

@@ -9,10 +9,10 @@
                         size="65"
                 >IP</v-avatar>
                 </div>
-                <v-list-item class="">                    
+                <v-list-item class=""><!--Current infos-->    
                     <v-list-item-content class="d-flex flex-column">
-                        <v-text-field v-model="user.firstName" disabled placeholder="youhou" label="Nom" color="purple darken-2"/>
-                        <v-text-field v-model="user.lastName" disabled placeholder="Robert" label="Prénom" color="purple darken-2"/>
+                        <v-text-field v-model="user.firstName" disabled placeholder="youhou" label="Prénom" color="purple darken-2"/>
+                        <v-text-field v-model="user.lastName" disabled placeholder="Robert" label="Nom" color="purple darken-2"/>
                         <v-text-field v-model="user.email" disabled placeholder="aaa@aaa.fr" label="Email" color="purple darken-2"/>
                     </v-list-item-content>
                 </v-list-item>
@@ -48,10 +48,10 @@
                         size="65"
                 >IP</v-avatar>
                 </div>
-                <v-list-item class="">                    
+                <v-list-item class=""><!--Modify infos-->                    
                     <v-list-item-content class="d-flex flex-column">
-                        <v-text-field v-model="user.firstName" placeholder="youhou" label="Nom" color="purple darken-2"/>
-                        <v-text-field v-model="user.lastName" placeholder="Robert" label="Prénom" color="purple darken-2"/>
+                        <v-text-field v-model="user.firstName" placeholder="youhou" label="Prénom" color="purple darken-2"/>
+                        <v-text-field v-model="user.lastName" placeholder="Robert" label="Nom" color="purple darken-2"/>
                         <v-text-field v-model="user.email" placeholder="aaa@aaa.fr" label="Email" color="purple darken-2"/>
                     </v-list-item-content>
                 </v-list-item>
@@ -85,8 +85,9 @@ export default {
     data: function () {
       return {
         mode: "Infos",
-        user: {firstName:'',
-               lastName:'',
+        user: {
+               firstName:'ze',
+               lastName:'rr',
                email:'',
                password:'',
                imageUrl:null,   
@@ -113,18 +114,21 @@ export default {
      }
     },
     mounted:function () {
-            console.log(this.$store.dispatch("userInfos/getUserInfos"));
+      /*      console.log(this.$store.dispatch("userInfos/getUserInfos"));
         if (this.$store.state.user.token == '') {
             this.$router.push('/login').catch(()=>{});
             console.log(this.$store.state.user.token);
             return ;
         } 
             this.$store.dispatch('getUserInfos');
-
-        if(localStorage.email) {
+*/
+        if (localStorage.email) {
             this.user.email = JSON.parse(localStorage.getItem('email'));
         }
-    },
+    },/*
+    computed:{
+        user: 'this.userInfos',
+  },*/
     methods: {
         switchToModifyInformations: function () {
             this.mode = "modifyInfos";

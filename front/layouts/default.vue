@@ -107,14 +107,6 @@ export default {
     }
   },
   mounted(userLogged) {
- /*   if (typeof window !== 'undefined') {
-    localStorage.setItem('myCat');
-    console.log('--------------->youhou', this.user.token);
-}*/
-
-   //let user = localStorage.getItem('user', JSON.parse(user))
-  // console.log('YOUHOU',userLogged);
-  //console.log('yyyyyyyy', this.$store.state("userInfos/stateId"));
   },
   methods: {
 

@@ -13,8 +13,8 @@ export default () => ({
         userInfos: {
           email: '',
           password: '',
-          lastName: '',
-          firstName: '',
+          lastName: 'r',
+          firstName: 'r',
           imageUrl: '',
           isAdmin: false,
           isModo: false,
@@ -22,8 +22,8 @@ export default () => ({
           undisplay: '',
         },
         User: {
-          lastName:'',
-          firstName:'',
+          lastName:'sq',
+          firstName:'qs',
           isModo:'',
           isAdmin:'',
           imageUrl:'', 
