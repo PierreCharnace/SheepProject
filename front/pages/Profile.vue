@@ -86,8 +86,8 @@ export default {
       return {
         mode: "Infos",
         user: {
-               firstName:'ze',
-               lastName:'rr',
+               firstName:'',
+               lastName:'',
                email:'',
                password:'',
                imageUrl:null,   
@@ -125,10 +125,16 @@ export default {
         if (localStorage.email) {
             this.user.email = JSON.parse(localStorage.getItem('email'));
         }
-    },/*
+    },
+    state: {
+        user:{ /*JSON.parse(localStorage.getItem('user'))*/
+        token:'',
+        userId:'',
+      },
+    },
     computed:{
-        user: 'this.userInfos',
-  },*/
+    //  ...mapState(['coins']),
+    },
     methods: {
         switchToModifyInformations: function () {
             this.mode = "modifyInfos";
