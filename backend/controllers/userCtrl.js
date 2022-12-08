@@ -15,10 +15,10 @@ exports.signup = (req, res, next) => {
     const lastName = req.body.lastName;
     const firstName = req.body.firstName;
     const password = req.body.password;
-    
+
 
     bcrypt.hash(password, 10) //crypt password
-    
+
         .then(hash => {
             const user = new User({    //
                 email: encryptEmail, //-->> take pasword and create new user with password crypted and mail adresse in req.body
@@ -26,11 +26,11 @@ exports.signup = (req, res, next) => {
                 firstName: firstName,
                 lastName: lastName,
             });
-           console.log('youhou', req.body)
+            console.log('youhou', req.body)
 
             user.save()                                                                 //
                 .then(() => res.status(201).json({ message: 'utilisateur créé !' }))    // save user in db
-                .catch(() =>res.status(500).json({ message: 'Adresse mail déjà utilisée !' }))
+                .catch(() => res.status(500).json({ message: 'Adresse mail déjà utilisée !' }))
         })
         .catch(error => res.status(500).json({ error }));
 };
@@ -47,6 +47,7 @@ exports.login = (req, res, next) => {
     User.findOne({ email: encryptEmail }) // collect user with email
 
         .then(user => {
+            console.log("login user", user);
 
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' });
@@ -57,7 +58,7 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: 'mot de passe incorrect' });// If isn't good send an error
                     }
 
-                    res.status(200).json({//
+                    res.status(200).json({
                         userId: user._id,// If it's OK send back user ID ands token
                         token: jwt.sign(
                             { userId: user._id },

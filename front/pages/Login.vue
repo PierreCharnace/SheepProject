@@ -40,7 +40,8 @@
               label="Email"
               required
               :rules="[rules.email]"
-            /> <small v-if="mode=='create'" id="emailErr"></small>
+            />
+            <small v-if="mode == 'create'" id="emailErr"></small>
             <v-text-field
               v-model="object.password"
               :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -68,7 +69,7 @@
               :rules="[rules.password]"
               @click:append="show1 = !show1"
             />
-            <small v-if="!validatePassword && mode ==='create'">
+            <small v-if="!validatePassword && mode === 'create'">
               Mot de passe saisie incorrect
             </small>
           </v-col>
@@ -86,14 +87,9 @@
         >
           S'enregistrer
         </v-btn>
-        <v-btn
-         v-else 
-         @click='login()'
-         articlePage
-         text color="primary"
-         > 
-         Connection 
-         </v-btn>
+        <v-btn v-else @click="login()" articlePage text color="primary">
+          Connexion
+        </v-btn>
       </v-card-actions>
     </v-form>
 
@@ -106,8 +102,8 @@ export default {
   name: "login",
   data: function () {
     return {
-      articlePage: {to: '/Article'},
-      passwordConfirm: '', 
+      articlePage: { to: "/Article" },
+      passwordConfirm: "",
       object: this.initObject(),
       mode: "create",
       show1: false,
@@ -115,19 +111,28 @@ export default {
         email: (v) => {
           const pattern =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-              return (pattern.test(v) || "Email non valide");
+          return pattern.test(v) || "Email non valide";
         },
         password: (v) => {
           const passwordPattern = /^(?=.*\d).{4,10}$/;
-          return passwordPattern.test(v) || 'Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre';
-        }, 
-        firstName: (v) => { 
+          return (
+            passwordPattern.test(v) ||
+            "Le mot de passe doit être compris entre 4 et 8 caractères et posséder un chiffre"
+          );
+        },
+        firstName: (v) => {
           const patternFirstName = /^(?=[a-zA-Z]).{2,20}$/;
-          return (patternFirstName.test(v) || 'Prénom non conforme il doit être compris entre 2 et 20 caractères');
+          return (
+            patternFirstName.test(v) ||
+            "Prénom non conforme il doit être compris entre 2 et 20 caractères"
+          );
         },
         lastName: (v) => {
-           const patternLastName = /^(?=[a-zA-Z]).{2,30}$/ ;
-           return   (patternLastName.test(v) || 'Nom non conforme il doit être compris entre 2 et 30 caractères');
+          const patternLastName = /^(?=[a-zA-Z]).{2,30}$/;
+          return (
+            patternLastName.test(v) ||
+            "Nom non conforme il doit être compris entre 2 et 30 caractères"
+          );
         },
       },
       pages: [],
@@ -154,27 +159,30 @@ export default {
     },
     createAccount: function () {
       const self = this;
-      if (!this.$refs.form.validate())
-       return
-          this.$store.dispatch("userInfos/createAccount", this.object
-          ).then(function (response) {
+      if (!this.$refs.form.validate()) return;
+      this.$store
+        .dispatch("user/createAccount", this.object)
+        .then(function (response) {
           //Don't forget the modal!!!!!!!!!!!!!!!!!!
-          self.mode = "login"
+          self.mode = "login";
           console.log(response);
-          }).catch(function (error) {
-            console.log(error);
-            return emailErr.innerHTML = "Email déjà utilisé" 
-          });          
+        })
+        .catch(function (error) {
+          console.log(error);
+          return (emailErr.innerHTML = "Email déjà utilisé");
+        });
     },
     login: function () {
-        const self = this;
-        this.$store.dispatch("userInfos/login", {
-        email: this.object.email,
-        password: this.object.password
-      }).then(function (response) {
-        localStorage.setItem('email', JSON.stringify(self.object.email));
-      }).catch(function (error) {
-      });
+      const self = this;
+      this.$store
+        .dispatch("user/login", {
+          email: this.object.email,
+          password: this.object.password,
+        })
+        .then(function (response) {
+          localStorage.setItem("email", JSON.stringify(self.object.email));
+        })
+        .catch(function (error) {});
     },
 
     initObject() {
