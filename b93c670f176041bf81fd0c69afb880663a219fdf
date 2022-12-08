@@ -1,0 +1,506 @@
+[33mcommit b93c670f176041bf81fd0c69afb880663a219fdf[m[33m ([m[1;36mHEAD -> [m[1;32mCharnaceRegis-main[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Dec 8 10:36:38 2022 +0100
+
+    you
+
+[33mcommit 4bf3adcbbc46affc7c9fb4f5f8dcf361944a6aca[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Nov 29 16:30:01 2022 +0100
+
+    ???
+
+[33mcommit be7ced89b411a886f6157bd0f75142c81e42ec4e[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Nov 24 15:48:26 2022 +0100
+
+    in the right track
+
+[33mcommit ac7824fdec8ca5eb3d5daf4c4f8f6983d09b33f5[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Nov 21 12:05:54 2022 +0100
+
+    try getuserInfos
+
+[33mcommit e41d1a3c99577e5894cdb1022606e68f2b5f00a3[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Nov 17 16:18:59 2022 +0100
+
+    try state store
+
+[33mcommit 7e2f5d0d7370ca6446612d28d6353480bcdb050c[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Nov 16 13:00:51 2022 +0100
+
+    shit
+
+[33mcommit 014194c529b5b34650cd0d288c668c70dd8b8798[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Nov 15 16:14:32 2022 +0100
+
+    mistake with localStorage
+
+[33mcommit e2e8e02a50057fdbfcc92094d356f4caa69150e4[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Nov 15 12:05:45 2022 +0100
+
+    userInfos begin
+
+[33mcommit bb35416cb935068ae8d5e9b6333b82af28867881[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Nov 14 22:38:08 2022 +0100
+
+    begin update profile and get user infos
+
+[33mcommit 40a3e3964deddc8683e12c4c7181c54ba7f34d66[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Nov 14 16:08:14 2022 +0100
+
+    full date ok, get userId ok
+
+[33mcommit 4e8a2444e7691be2413c0e82188408c7cf9d9367[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Nov 9 23:05:01 2022 +0100
+
+    user local storage get back info, try to get back
+
+[33mcommit 428d66f24b955e22d6aa32081b34053169bf725a[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Nov 8 16:03:34 2022 +0100
+
+    logout and fix router push for login
+
+[33mcommit 81f35bdf38fe64e26ef0554e79d67be24548b2f0[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Nov 8 15:10:50 2022 +0100
+
+    btn disconnection
+
+[33mcommit 1b5eddccd1a3c8413c8e8d399cac0d79f2e1b66b[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Nov 7 23:03:39 2022 +0100
+
+    infos profil
+
+[33mcommit 186572706d63f528495c782bb6fa90d828049781[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Nov 4 15:13:49 2022 +0100
+
+    begin profile page
+
+[33mcommit 2670b8f3a0c63c588ff599db11f6473a74df59b1[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Nov 1 17:53:19 2022 +0100
+
+    on the way of next page article
+
+[33mcommit 297e055162d521c00ce8b75f518c27c6e79f7d52[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Oct 31 10:57:20 2022 +0100
+
+    secure app
+
+[33mcommit 5119ea3afba11c00e3b0ee94e0c1303d2288a218[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Oct 17 22:37:28 2022 +0200
+
+    creatoin ok and email unique validator ok to, let's push for article pages
+
+[33mcommit 81c4a005130faad89020571a281ac73284a1ecfb[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Sun Oct 2 15:38:13 2022 +0200
+
+    all regex ok in login pages, now try to push to article
+
+[33mcommit e01702e01767dcf1189d163f26a80bfda246c4d8[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Sep 28 17:43:09 2022 +0200
+
+    signup ok signin in progress just router.push and normally it's ok
+
+[33mcommit 286b9194832e8823c4f866ff9cdc1f706232a8e8[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Sep 26 22:55:28 2022 +0200
+
+    axios error ok, disabled button when password not good
+
+[33mcommit f4a7e20c1bb7d539de32ef08a3f3a55021c0055a[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Sep 23 22:52:07 2022 +0200
+
+     Begins rules for names and password
+
+[33mcommit bd0fc0387f9b1936fa6b1115e3c090097bace259[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Sep 20 17:54:21 2022 +0200
+
+    fix create process
+
+[33mcommit 382ec8ec2538638540006fa00e0d747e12c0c866[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Jul 12 18:01:41 2022 +0200
+
+    createAccount function  it's ok
+
+[33mcommit dcd555ba4ccba7450bdbc23eb95fd7e2558aaaf5[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Jul 7 17:48:24 2022 +0200
+
+    again try to switch to login
+
+[33mcommit 5520a8a555fe71255f4dd0b05827611133007c61[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Jul 5 22:25:41 2022 +0200
+
+    start modal for redirected page in login
+
+[33mcommit 9b6ac128663b7af85b209730320db84baa7f89a1[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Jul 4 21:58:49 2022 +0200
+
+    login and create pae again
+
+[33mcommit e0f1561bae03ba22334c8796df1791566b442084[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Jun 24 14:49:44 2022 +0200
+
+    try to login
+
+[33mcommit 6c024f94eec16daf4afb415389af0547bcc6ed2b[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Jun 23 14:31:33 2022 +0200
+
+    try to switch
+
+[33mcommit 28983a7d1bb946f9b4ec624cf639eb75c68ac10c[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Jun 22 01:43:20 2022 +0200
+
+    try router
+
+[33mcommit 4e3c79a6db8b2cb59d2413576520e3d1465ffe31[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Jun 16 16:51:01 2022 +0200
+
+    try to restart the roject with email validation
+
+[33mcommit 9fc5e4b4d1843dc9e135bc813100e567e93ef89c[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Jun 14 22:00:44 2022 +0200
+
+    userinfos starting mutations and state
+
+[33mcommit b3e1d0f36753a7f59ddf9ab22b61b7b32ad184ee[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Jun 14 15:58:24 2022 +0200
+
+    regis modif
+
+[33mcommit e0e3899afa5c7823444346727712c17401f210cc[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Jun 14 10:35:48 2022 +0200
+
+    try
+
+[33mcommit b814cc2ee1e9122025447d1caff0e1aa23258837[m
+Merge: 45bdf30 526283f
+Author: PierreCharnacé <79308209+PierreCharnace@users.noreply.github.com>
+Date:   Mon May 23 22:18:41 2022 +0200
+
+    Merge pull request #1 from CharnaceRegis/main
+    
+    fix
+
+[33mcommit 526283f43427bc556d2b045ca00781ea5022ec4e[m
+Author: regis <regis>
+Date:   Sun May 15 19:04:15 2022 +0200
+
+    add head
+
+[33mcommit a242971aaa83f79ca4591b952077774f54614a0f[m
+Author: regis <regis>
+Date:   Sun May 15 18:29:50 2022 +0200
+
+    fix actions
+
+[33mcommit 9f4dc1235cef808d8babd9aa7d2b4aafd7ea507a[m
+Author: regis <regis>
+Date:   Sun May 15 18:20:18 2022 +0200
+
+    fix
+
+[33mcommit 45bdf30f74a607ea857e142b675eed81fdd137f9[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri May 6 16:22:00 2022 +0200
+
+    bad request mail for backend
+
+[33mcommit 97b6aa57f253c8a4e577af7adfc99bc07ebce3a4[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 23 15:53:57 2022 +0100
+
+    store mistake
+
+[33mcommit 916087f694d98a7ae1d0e6bafce02a2a8490df3d[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 23 15:07:23 2022 +0100
+
+    validatesFields ok with disabled btn
+
+[33mcommit 962ce36a51d5ac33625ad2729d32e8bf5750cff4[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 23 11:39:19 2022 +0100
+
+    login and createAccount mode
+
+[33mcommit 79933703c961a032a28884d067746aacbb4b18ef[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Mar 21 16:21:33 2022 +0100
+
+    login and create v-if rendu
+
+[33mcommit 33178a56534a0774f764ee8699d7c0031d128d60[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Mar 18 16:51:20 2022 +0100
+
+    redesign register
+
+[33mcommit 8783fc63fa1dd74ce1b4c5afb3bca6f6779eecf5[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Mar 18 12:00:32 2022 +0100
+
+    login register vuetify placind
+
+[33mcommit a6706b85615344918f50982a3ccabd60b6ce5eb2[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Mar 17 16:21:20 2022 +0100
+
+    login begin
+
+[33mcommit 289ecd5201a4d2d5e689e39fa74497d7dfb4834e[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 16 17:33:22 2022 +0100
+
+    front
+
+[33mcommit 1ab895987ea2196e4522b95b2d100b3d35b7371e[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 16 17:28:53 2022 +0100
+
+    try2
+
+[33mcommit c977bd1ac32e537ff46f97f6db777519a0bad7ee[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 16 17:10:25 2022 +0100
+
+    front-end
+
+[33mcommit 4edf282c63fb9f9a0d5179464ec5f784b139c641[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 16 16:34:38 2022 +0100
+
+    front
+
+[33mcommit 643a422fe65c2b7a75a4a470222c798f3cd5e05a[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 16 12:55:19 2022 +0100
+
+    yohuou
+
+[33mcommit aa3740a5e5fd772fb51c0bd268e1ffe67b6afdd4[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 15 14:44:35 2022 +0100
+
+    yohou
+
+[33mcommit 7f3c49238df50803bbcf1fd1c74b4f5e29c6ad02[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 15 14:16:12 2022 +0100
+
+    try
+
+[33mcommit fbf5f63d10d8f1d3d4d063863b176ee8e44a5677[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 15 14:02:12 2022 +0100
+
+    delete
+
+[33mcommit 9e100f35f4aeace5403830d7910032e0c54d41b6[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 15 13:45:25 2022 +0100
+
+    install vuetify
+
+[33mcommit 11766f1a439d52eb4e134bed264f7af0a8cdba3a[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 15 13:42:47 2022 +0100
+
+    deletre
+
+[33mcommit de5248a3580ac7eba19eb5b595c6fa35971967fd[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Mar 10 22:54:12 2022 +0100
+
+    vuetify
+
+[33mcommit 035bc785ce869282cb354380d4fb57a6626aa0a5[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 22:16:42 2022 +0100
+
+    instalation of vuetify nuxt 3 and tailwind
+
+[33mcommit 9c402892fb56cfd989d54e44c8d36ca6cce78e39[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 21:41:14 2022 +0100
+
+    move readme.md file
+
+[33mcommit 6dc5993b4907f86e62369a4cf6066c2c43a12785[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 21:34:41 2022 +0100
+
+    end of backend, routes menu done
+
+[33mcommit adcebf6465584d9d2b045077dc6d0f25737cc692[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 17:53:14 2022 +0100
+
+    articles ok end of menu now
+
+[33mcommit 1d813e7bacc30010b16114575071837b459d450b[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 16:04:28 2022 +0100
+
+    mistakeeeeeeee
+
+[33mcommit 43a6276891a8deb3a3854ed52e625b8c7efb37c3[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 15:57:52 2022 +0100
+
+    ??? with the condition in article
+
+[33mcommit 59f637d2c356729ec2481c2abab5b6113eb4dc07[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 9 12:16:40 2022 +0100
+
+    comments routes ok and post routes ok too
+
+[33mcommit 35b4a8becee7edccc53ce4041405ecac158f4881[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 8 15:43:38 2022 +0100
+
+    posts routes finish finally
+
+[33mcommit 4f61b612c7c8944b70469d9628eb7d70bb619979[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 8 11:42:41 2022 +0100
+
+    postctrl crete ok nearby
+
+[33mcommit ab46b0dd0ea79f241272d7583b76a3e4202b7987[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Mar 7 23:47:43 2022 +0100
+
+    mistake mime types
+
+[33mcommit c41d9f8c6f57dfc00ea365301377e49bc685db19[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Mar 7 15:10:00 2022 +0100
+
+    mistake with image file
+
+[33mcommit 2faebfbd47f83d04d9f6576504b03d2ef2fea445[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Sun Mar 6 22:31:07 2022 +0100
+
+    mistake with post alwaysssssssssssss
+
+[33mcommit 5ca8b972eebd7cb69a37279dc059b3455247a000[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Mar 4 23:04:36 2022 +0100
+
+    starting route postcreate
+
+[33mcommit dc983511b2eaecd12d9385cad7bba93df2257e99[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Mar 4 22:05:41 2022 +0100
+
+    delete user ok finally
+
+[33mcommit 739ca3fd9ed2f479e29ea9fcc3ee53181dd262ba[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Mar 4 15:58:11 2022 +0100
+
+    delete pistake
+
+[33mcommit a2fa8553e039bc26ff79f99126a8a22181136ea8[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Fri Mar 4 11:48:31 2022 +0100
+
+    updateProfile ok, starting deleteProfile
+
+[33mcommit f6421ecb34e48f92da7dd665b829f88caecc6ad8[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Thu Mar 3 16:19:36 2022 +0100
+
+    upadte user pistake with encrypt password and email
+
+[33mcommit 55e4298ebc2d8f1f56d92975245fa78520e4e19c[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 2 17:00:50 2022 +0100
+
+    mistake with update profile
+
+[33mcommit aa34150ae85099c9ca8d1c6ddc7fc02fa6084917[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Wed Mar 2 16:14:38 2022 +0100
+
+    login ok
+
+[33mcommit 959940d6ccb17a49b3fd6804ca5e235bb12f430f[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 1 22:46:22 2022 +0100
+
+    routes
+
+[33mcommit d647e474027614e94cdc3849bf27aab34207bbcf[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 1 15:25:44 2022 +0100
+
+    first route user signup ok
+
+[33mcommit 1c76aec0cfc2c625e1371577010f53c92aee7f93[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Tue Mar 1 10:54:43 2022 +0100
+
+    user routes
+
+[33mcommit 6a4d3b4e07386be774624602ee0ba58ab4a568e0[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Feb 28 23:28:25 2022 +0100
+
+    ok schema
+
+[33mcommit c1f03de627d4cc6db28b209f4425612ec7841c17[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Feb 28 23:06:43 2022 +0100
+
+    schemas ok, i hope
+
+[33mcommit c2962fcc33da1c4fffceaa1379ad472c1b41e643[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Feb 28 17:08:15 2022 +0100
+
+    create model user and userctrl
+
+[33mcommit 9850093777962f998e2d9f44e8119ef0fd09a25a[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Feb 28 17:01:51 2022 +0100
+
+    router create and postmodel
+
+[33mcommit 342194c8d2c9f14215bc526080ada87895cd5708[m[33m ([m[1;32mmaster[m[33m)[m
+Author: PierreCharnace <pierre.charnace@gmail.com>
+Date:   Mon Feb 28 15:35:40 2022 +0100
+
+    ok
