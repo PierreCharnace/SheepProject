@@ -5,6 +5,7 @@ const instance = axios.create({
 });
 
 export const state = () => ({
+    
 })
 
 export const mutations = {
@@ -12,16 +13,22 @@ export const mutations = {
         state.status = status;
     },
 
-    logUser: function (state, user) {
+    logUser({dispatch, state,store}, user) {
         console.log("logUser", user);
         //instance.defaults.headers.common['Authorization'] = user.token;
         localStorage.setItem('user', JSON.stringify(user))// save user in localStorage 
         state = user
         this.$router.push('Article')
+
+        dispatch('getProfile', user)
     },
 
     userInfos: function (state, userInfos) {
         state.userInfos = userInfos;
+    },
+
+    getProfile({ dispatch, commit, getters }, { user }) {
+        console.log('getProfile', user);
     },
 
 
@@ -84,5 +91,8 @@ export const actions = {
                     reject(error);
                 })
         })
+    },
+    UpdateProfile: ({ commit }, userInfos) => {
+        commit('setStatus',)
     }
 }

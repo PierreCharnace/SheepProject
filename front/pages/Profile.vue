@@ -18,14 +18,14 @@
           ><!--Current infos-->
           <v-list-item-content class="d-flex flex-column">
             <v-text-field
-              v-model="$store.state.userInfos.User.firstName"
+              v-model="$store.state.user.firstName"
               disabled
               placeholder="youhou"
               label="Prénom"
               color="purple darken-2"
             />
             <v-text-field
-              v-model="user.lastName"
+              v-model="$store.state.user.lastName"
               disabled
               placeholder="Robert"
               label="Nom"
@@ -111,10 +111,10 @@ export default {
     return {
       mode: "Infos",
       user: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+        firstName: "r",
+        lastName: "r",
+        email: "r",
+        password: "r",
         imageUrl: null,
       },
       rules: {
@@ -162,13 +162,6 @@ export default {
     }
   },
 
-  state: {
-    user: {
-      /*JSON.parse(localStorage.getItem('user'))*/ token: "",
-      userId: "",
-    },
-  },
-
   methods: {
     switchToModifyInformations: function () {
       this.mode = "modifyInfos";
@@ -180,14 +173,15 @@ export default {
     updateProfile: function () {
       let userToken = localStorage.getItem("user");
       userToken = JSON.parse(userToken);
-
       {
         axios
           .put(
             "http://localhost:3000/api/users/userProfile",
             {
-              lastName: this.user.lastName,
-              firstName: this.user.firstName,
+              lastName: this.state.user.lastName,
+              firstName: this.state.user.firstName,
+              email: cryptojs.HmacSHA256(this.state.user.email, "SECRET_KY_FOR_EMAIL").toString(),
+              imageUrl: this.user.imageUrl,
             },
             {
               headers: {
