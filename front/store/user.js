@@ -13,30 +13,33 @@ export const mutations = {
         state.status = status;
     },
 
+    logged () {
+    },
+
     logUser({dispatch, state,store}, user) {
         console.log("logUser", user);
-        //instance.defaults.headers.common['Authorization'] = user.token;
+        instance.defaults.headers.common['Authorization'] = user.token;
         localStorage.setItem('user', JSON.stringify(user))// save user in localStorage 
-        state = user
-        this.$router.push('Article')
-
-        dispatch('getProfile', user)
+        state = user;
+        window.location.replace('http://localhost:3000/Article')                        
+        //dispatch('getProfile', user)
     },
 
     userInfos: function (state, userInfos) {
         state.userInfos = userInfos;
     },
 
-    getProfile({ dispatch, commit, getters }, { user }) {
-        console.log('getProfile', user);
-    },
+    getProfile: function () {
+        JSON.parse(localStorage.getItem('user'))
 
+    },
 
     logout: function (state) {
         state.user = {
             userId: -1,
             token: '',
         }
+        console.log('youhou2',this.modeUser),
         localStorage.removeItem('user');
         localStorage.removeItem('email');
         localStorage.removeItem('postInfos');
@@ -70,7 +73,6 @@ export const actions = {
         })
     },
 
-
     createAccount: ({ commit }, userInfos) => {
         commit('setStatus', 'loading');
         return new Promise((resolve, reject) => {
@@ -91,6 +93,9 @@ export const actions = {
                     reject(error);
                 })
         })
+    },
+    getUserProfile: ({ commit}, getProfile) => {
+        commit
     },
     UpdateProfile: ({ commit }, userInfos) => {
         commit('setStatus',)

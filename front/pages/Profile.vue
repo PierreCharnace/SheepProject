@@ -149,14 +149,7 @@ export default {
   },
 
   mounted: function () {
-    /*      console.log(this.$store.dispatch("userInfos/getUserInfos"));
-        if (this.$store.state.user.token == '') {
-            this.$router.push('/login').catch(()=>{});
-            console.log(this.$store.state.user.token);
-            return ;
-        } 
-            this.$store.dispatch('getUserInfos');
-*/
+    
     if (localStorage.email) {
       this.user.email = JSON.parse(localStorage.getItem("email"));
     }
@@ -170,13 +163,13 @@ export default {
       this.mode = "Infos";
     },
 
-    updateProfile: function () {
+    /*updateProfile: function () {
       let userToken = localStorage.getItem("user");
       userToken = JSON.parse(userToken);
       {
         axios
           .put(
-            "http://localhost:3000/api/users/userProfile",
+            "http://localhost:3000/api/users/userProfile/:id",
             {
               lastName: this.state.user.lastName,
               firstName: this.state.user.firstName,
@@ -199,7 +192,7 @@ export default {
             }
           });
       }
-    },
+    },*/
   },
 };
 </script>

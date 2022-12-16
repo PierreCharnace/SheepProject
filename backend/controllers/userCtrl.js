@@ -82,7 +82,7 @@ exports.getAllProfile = (req, res, next) => {
 
 exports.getUserProfile = (req, res, next) => {
     User.findOne({ _id: req.params.id })  //  find one object with the id
-        .then(user => res.status(200).json(user)) //If it's Ok send back one sauce
+        .then(user => res.status(200).json(user)) //If it's Ok send back one user
         .catch(error => res.status(404).json({ error })); // If isn't Ok send back an error
 };
 

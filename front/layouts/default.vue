@@ -40,7 +40,7 @@
           dark
           rounded 
           @click="logout()"
-          v-if="'e' /*(user.token !=='-1')*/"
+          v-if="modeUser === 'connected'"
         >
           <v-icon
             dark
@@ -67,8 +67,7 @@
 export default {
   name: 'DefaultLayout',
   data () {
-    return {
-      
+    return { 
       clipped: false,
       drawer: false,
       fixed: false,
@@ -103,10 +102,22 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Lacaune',
-      to: '/'
+      to: '/',
+      modeUser: 'disconnected' ,
     }
   },
-  mounted(userLogged) {
+  mounted() {
+    console.log('kikou',localStorage.getItem('user'));
+    if (JSON.parse(localStorage.getItem('user')) === null) {
+     return this.modeUser = 'disconnected'
+    } else {
+      return this.modeUser = 'connected'
+    }
+    
+   // console.log('kikou',user.userId);
+   /* if (user.userId != '') {
+      this.modeUser = 'connected'
+    };*/
   },
   methods: {
 
@@ -121,8 +132,9 @@ export default {
 
     logout: function () {
       if (confirm("vous allez être déconnecté")) {
-        this.$store.commit('userInfos/logout');
-        this.$router.push('Login')
+        this.$store.commit('user/logout');
+        this.$router.push('Login');
+        this.modeUser = 'disconnected';
         return;
       }
     },

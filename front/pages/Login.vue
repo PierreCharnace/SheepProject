@@ -138,7 +138,8 @@ export default {
       pages: [],
     };
   },
-  mounted() {},
+  mounted() {
+  },
   computed: {
     validatePassword: function () {
       if (this.passwordConfirm == this.object.password) return true;
@@ -181,6 +182,7 @@ export default {
         })
         .then(function (response) {
           localStorage.setItem("email", JSON.stringify(self.object.email));
+          this.modeUser = 'connected'
         })
         .catch(function (error) {});
     },
@@ -193,6 +195,7 @@ export default {
         email: null,
       };
     },
+   
   },
   head() {
     return {
