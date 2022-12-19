@@ -5,7 +5,8 @@ const instance = axios.create({
 });
 
 export const state = () => ({
-    
+//userInfos : 'youhou',
+
 })
 
 export const mutations = {
@@ -94,9 +95,16 @@ export const actions = {
                 })
         })
     },
-    getUserProfile: ({ commit}, getProfile) => {
-        commit
-    },
+    getUserProfile: ({commit}) => {
+        instance.get('/users/userProfile/${params.id}')
+          .then(function (response) {
+            commit('userInfos', response.data);
+          })
+          .catch(function (error) {
+            commit('setStatus', 'error_get_profile');
+            reject(error)
+          })
+      },
     UpdateProfile: ({ commit }, userInfos) => {
         commit('setStatus',)
     }

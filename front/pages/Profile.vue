@@ -18,14 +18,14 @@
           ><!--Current infos-->
           <v-list-item-content class="d-flex flex-column">
             <v-text-field
-              v-model="$store.state.user.firstName"
+              v-model="user.firstName"
               disabled
               placeholder="youhou"
               label="Prénom"
               color="purple darken-2"
             />
             <v-text-field
-              v-model="$store.state.user.lastName"
+              v-model="user.lastName"
               disabled
               placeholder="Robert"
               label="Nom"
@@ -153,7 +153,10 @@ export default {
     if (localStorage.email) {
       this.user.email = JSON.parse(localStorage.getItem("email"));
     }
+    this.$store.dispatch('user/getUserProfile/:id')
+
   },
+
 
   methods: {
     switchToModifyInformations: function () {
