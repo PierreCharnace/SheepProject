@@ -153,8 +153,9 @@ export default {
     if (localStorage.email) {
       this.user.email = JSON.parse(localStorage.getItem("email"));
     }
-    this.$store.dispatch('user/getUserProfile/:id')
-
+    //let user = this.$store.dispatch('user/getUserProfile') 
+    console.log(this.$store.dispatch('user/getUserProfile'))
+  //console.log('user/getUserProfile');
   },
 
 

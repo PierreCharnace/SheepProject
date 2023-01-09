@@ -96,13 +96,13 @@ export const actions = {
         })
     },
     getUserProfile: ({commit}) => {
-        instance.get('/users/userProfile/${params.id}')
+        instance.get('/userProfile') //get back the id 
           .then(function (response) {
-            commit('userInfos', response.data);
+            commit('userInfos', response.data); // get back infos from back
           })
           .catch(function (error) {
             commit('setStatus', 'error_get_profile');
-            reject(error)
+           // reject(error)
           })
       },
     UpdateProfile: ({ commit }, userInfos) => {
